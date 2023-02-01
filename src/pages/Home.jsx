@@ -49,18 +49,18 @@ const Home = () => {
                 <h2 className='text-4xl my-10'>Why Gyaanam Educare Tutorials?</h2>
                 <h3 className='text-xl my-3'>Be a part of this survey and help us provide better education for all.</h3>
             </article>
-            <section className='w-[90%] md:w-[60%] mx-auto flex flex-col gap-12'>
+            <section className='w-[90%] md:w-[60%] mx-auto flex flex-col gap-12 mb-[6rem]'>
                 <article className='flex gap-4'>
-                    <div className='w-[100%] flex-grow'>
+                    <div className='w-[100%] md:w-[20%]'>
                     <img src='/assets/value-1.png'/>
                     </div>
                     <article className='font-thin'>
-                        <h1 className='text-[#69E6A6] text-2xl md:text-4xl'>Accessible to all</h1>
+                        <h1 className='text-[#69E6A6] text-2xl md:text-4xl'>Acessible to all</h1>
                         <h2 className='text-neutral-100 my-3 text-lg md:text-xl'>Gyaanam Educare Tutorials learning system is designed to make learning easy and accessible for all students.</h2>
                     </article>
                 </article>
                 <article className='flex gap-4'>
-                    <div className='w-[100%] flex-grow'>
+                    <div className='w-[100%] md:w-[20%]'>
                     <img src='/assets/value-2.png'/>
                     </div>
                     <article className='font-thin'>
@@ -69,7 +69,7 @@ const Home = () => {
                     </article>
                 </article>
                 <article className='flex gap-4'>
-                    <div className='w-[100%] flex-grow'>
+                    <div className='w-[100%] md:w-[20%]'>
                     <img src='/assets/value-3.png'/>
                     </div>
                     <article className='font-thin'>
