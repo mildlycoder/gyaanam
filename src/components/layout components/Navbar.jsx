@@ -9,7 +9,7 @@ const Navbar = () => {
         </div>
 
         <div>
-          <ul className='flex text-neutral-100 items-center font-semibold gap-6 text-[1rem]'>
+          <ul className=' hidden md:flex text-neutral-100 items-center font-semibold gap-6 text-[1rem]'>
             <li>Products</li>
             <li>Services</li>
             <li>About</li>
