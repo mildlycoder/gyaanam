@@ -3,6 +3,7 @@ import {FormField, Loader, Card} from '../components/page components/index'
 import {FiFeather} from 'react-icons/fi'
 import {AiOutlineEye} from 'react-icons/ai'
 import {BiSun} from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     const [loading, setLoading] = useState(false)
@@ -19,7 +20,7 @@ const Home = () => {
                 <h2 className='text-md my-[2rem] md:w-[65%] md:mx-auto'>
                 This survey is conducted by GET to know and acknowledge the students struggling with their curriculum. You are kindly requested to be a part of this survey and help GET with its campaign.
                 </h2>
-                <button className='bg-[#69E6A6] text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
+                <button className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
                     Take survey
                 </button>
             </article>
@@ -51,7 +52,7 @@ const Home = () => {
             </article>
             <section className='w-[90%] md:w-[60%] mx-auto flex flex-col gap-12 mb-[6rem]'>
                 <article className='flex gap-4'>
-                    <div className='w-[100%] md:w-[20%]'>
+                    <div className='w-[100%] md:w-[16%]'>
                     <img src='/assets/value-1.png'/>
                     </div>
                     <article className='font-thin'>
@@ -80,24 +81,26 @@ const Home = () => {
             </section>
         </section>
 
-        <section className='md:p-[8rem] pb-[3rem]'>
+        <section className='md:px-[8rem] py-[3rem] pb-[1rem]'>
             <section className='w-[90%] md:w-[75%] mx-auto flex flex-col md:flex-row justify-between gap-5'>
                 <article>
                     <h1 className='text-5xl my-8'>Every student's study companion</h1>
-                    <p className='bg-[#0A2640] text-neutral-100 p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><FiFeather/>understanding the problem</p>
-                    <p className=' p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><AiOutlineEye/>understanding the problem</p>
-                    <p className=' p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><BiSun/>understanding the problem</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><FiFeather/>understanding the problem</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><AiOutlineEye/>understanding the problem</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><BiSun/>understanding the problem</p>
                 </article>
-                <img src='/assets/hero-2.png' className='w-[90%]'/>
+                <img src='/assets/hero-2.png' className='w-[45%]'/>
             </section>
         </section>
 
-        <section className='md:p-[8rem]'>
+        <section className='md:px-[8rem] py-[3rem]'>
             <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md'>
                 <h1 className='text-4xl my-5 text-neutral-100 font-thin'>Take survey now!</h1>
-                <button className='bg-[#69E6A6] text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
+                <Link to='/survey'>
+                <button className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
                     Start Now
                 </button>
+                </Link>
             </article>
         </section>
     </main>
