@@ -20,9 +20,11 @@ const Home = () => {
                 <h2 className='text-md my-[2rem] md:w-[65%] md:mx-auto'>
                 This survey is conducted by GET to know and acknowledge the students struggling with their curriculum. You are kindly requested to be a part of this survey and help GET with its campaign.
                 </h2>
+                <Link to='/survey'>
                 <button className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
                     Take survey
                 </button>
+                </Link>
             </article>
         </section>
 
