@@ -5,8 +5,7 @@ import { toast } from "react-toastify";
 
 const Survey = () => {
     const [user, setUser] = useState({
-        'id' : '',
-        'name': '',
+        's_name': '',
         'phone no': '',
         'email': '',
         'satisfaction': '',
@@ -19,19 +18,18 @@ const Survey = () => {
         'views': '',
         'opinions': ''
     })
-
+    
     const handleSubmit = (e) => {
-        e.preventDefault()
         console.log('clicked')
-        if(user.name && user['phone no'] && user.email ) {
+        e.preventDefault()
+        if(user.s_name && user['phone no'] && user.email ) {
             console.log('clicked')
-            setUser({...user,'id': uuid()})
+            console.log(user)
     
             axios.post('https://sheet.best/api/sheets/803f6018-7e1f-401d-87a8-1f880b371430',user).then((response)=>{
               console.log(response);
               setUser({
-                'id' : '',
-                'name': '',
+                's_name': '',
                 'phone no': '',
                 'email': '',
                 'satisfaction': '',
@@ -45,7 +43,6 @@ const Survey = () => {
                 'opinions': ''
             })
               toast.success("Form submitted successfully!");
-              router.push("/");
             })
     
             // toast.error("Form submission failed!");
@@ -63,8 +60,8 @@ const Survey = () => {
                 <input 
                 type='text'
                 className='border-2 w-full border-gray-500 p-2 rounded-r-full rounded-l-full'
-                value={user.name}
-                onChange={(e) => setUser({...user, 'name':e.target.value})}
+                value={user.s_name}
+                onChange={(e) => setUser({...user, 's_name':e.target.value})}
                 />
             </div>
             <div>
@@ -324,6 +321,16 @@ const Survey = () => {
                     /><label className='text-xl font-semibold'>It will not be so helpful</label>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <h1 className='text-2xl font-semibold'>What are your opinions as a student, that would lead to betterment in the learning pattern</h1>
+                <input 
+                type='text'
+                className='border-2 my-5 w-full border-gray-500 p-6 rounded-r-full rounded-l-full'
+                value={user.opinions}
+                onChange={(e) => setUser({...user, 'opinions':e.target.value})}
+                />
             </div>
 
             <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
