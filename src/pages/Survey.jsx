@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import uuid from 'react-uuid';
-import axios from "axios";
 import Airtable from 'airtable';
+import { useNavigate } from "react-router-dom";
 
 const base = new Airtable({apiKey: import.meta.env.VITE_API_KEY}).base('apphpL7lHo7AHeRV9')
 
 const Survey = () => {
-
+    const navigate = useNavigate();
     const [user, setUser] = useState({
         's_name': '',
         'phone_no': '',
@@ -19,18 +18,19 @@ const Survey = () => {
         'prep_status': '',
         'experience_alvs': '',
         'views': '',
-        'opinions': ''
+        'opinions': '',
+        'survey_partner' : ''
     })
-    
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         console.log('clicked')
         e.preventDefault()
-        if(user.s_name && user.phone_no && user.email ) {
+        if(user.s_name && user.phone_no && user.email && user.email.includes('@') ) {
             base('survey').create([
                 {
                     fields : {
                         name: user.s_name,
-                        phone_no: user.phone_no,
+                        phone_no: '+91' + user.phone_no,
                         email : user.email,
                         satisfaction: user.satisfaction,
                         field: user.field,
@@ -40,7 +40,8 @@ const Survey = () => {
                         prep_status: user.prep_status,
                         experience_alvs: user.experience_alvs,
                         views: user.views,
-                        opinions: user.opinions   
+                        opinions: user.opinions,
+                        partner : user.survey_partner
                     }
                 }
               ], function(err, records) {
@@ -52,9 +53,12 @@ const Survey = () => {
                   console.log(record.getId());
                 });
               });
+              navigate("/exit");
+        } else {
+            alert('enter personal information correctly')
         }
     }
-
+    
   return (
     <main className='md:p-[5rem] p-[2rem]'>
         <form className='shadow-md rounded-lg md:w-[60%] mx-auto flex flex-col gap-5 md:p-16 p-8'>
@@ -334,6 +338,14 @@ const Survey = () => {
                 value={user.opinions}
                 onChange={(e) => setUser({...user, 'opinions':e.target.value})}
                 />
+            </div>
+
+            <div>
+                <h1 className='text-2xl font-semibold'>Survey partner</h1>
+                <select value={user.partner} onChange={(e) => setUser({...user, 'partner':e.target.value})} className='w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                    <option value="Sanskar">Sanskar</option>
+                    <option value="Pranav">Pranav</option>
+                </select>
             </div>
 
             <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
