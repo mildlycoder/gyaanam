@@ -1,20 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import uuid from 'react-uuid';
 import axios from "axios";
-import { toast } from "react-toastify";
+import Airtable from 'airtable';
+
+const base = new Airtable({apiKey: import.meta.env.VITE_API_KEY}).base('apphpL7lHo7AHeRV9')
 
 const Survey = () => {
+
     const [user, setUser] = useState({
         's_name': '',
-        'phone no': '',
+        'phone_no': '',
         'email': '',
         'satisfaction': '',
         'field': '',
-        'toublesome subject': '',
-        'help': '',
+        'troublesome_sub': '',
+        'help_taken': '',
         'exam': '',
-        'prep': '',
-        'experience ALVS': '',
+        'prep_status': '',
+        'experience_alvs': '',
         'views': '',
         'opinions': ''
     })
@@ -22,34 +25,34 @@ const Survey = () => {
     const handleSubmit = (e) => {
         console.log('clicked')
         e.preventDefault()
-        if(user.s_name && user['phone no'] && user.email ) {
-            console.log('clicked')
-            console.log(user)
-    
-            axios.post('https://sheet.best/api/sheets/803f6018-7e1f-401d-87a8-1f880b371430',user).then((response)=>{
-              console.log(response);
-              setUser({
-                's_name': '',
-                'phone no': '',
-                'email': '',
-                'satisfaction': '',
-                'field': '',
-                'toublesome subject': '',
-                'help': '',
-                'exam': '',
-                'prep': '',
-                'experience ALVS': '',
-                'views': '',
-                'opinions': ''
-            })
-              toast.success("Form submitted successfully!");
-            })
-    
-            // toast.error("Form submission failed!");
-    
-          } else{
-            toast.error("Please fill all the values");
-          }
+        if(user.s_name && user.phone_no && user.email ) {
+            base('survey').create([
+                {
+                    fields : {
+                        name: user.s_name,
+                        phone_no: user.phone_no,
+                        email : user.email,
+                        satisfaction: user.satisfaction,
+                        field: user.field,
+                        troublesome_sub: user.troublesome_sub,
+                        help_taken: user.help_taken,
+                        exam: user.exam,
+                        prep_status: user.prep_status,
+                        experience_alvs: user.experience_alvs,
+                        views: user.views,
+                        opinions: user.opinions   
+                    }
+                }
+              ], function(err, records) {
+                if (err) {
+                  console.error(err);
+                  return;
+                }
+                records.forEach(function (record) {
+                  console.log(record.getId());
+                });
+              });
+        }
     }
 
   return (
@@ -78,8 +81,8 @@ const Survey = () => {
                 <input 
                 type='tel'
                 className='border-2 border-gray-500 p-2 w-full rounded-r-full rounded-l-full'
-                value={user['phone no']}
-                onChange={(e) => setUser({...user, 'phone no':e.target.value})}
+                value={user.phone_no}
+                onChange={(e) => setUser({...user, 'phone_no':e.target.value})}
                 />
             </div>
 
@@ -149,7 +152,7 @@ const Survey = () => {
                 </div>
             </div>
 
-            <div className=' my-5' onChange={(e)=> setUser({...user, 'troublesome subject': e.target.value})}>
+            <div className=' my-5' onChange={(e)=> setUser({...user, 'troublesome_sub': e.target.value})}>
                 <h1 className='text-2xl font-semibold'>What subject seems most toublesome to you</h1>
                 <div className='flex flex-col gap-4 my-3'>
                     <div className='flex gap-3'>
@@ -186,7 +189,7 @@ const Survey = () => {
                 </div>
             </div>
 
-            <div className=' my-5' onChange={(e)=> setUser({...user, 'help': e.target.value})}>
+            <div className=' my-5' onChange={(e)=> setUser({...user, 'help_taken': e.target.value})}>
                 <h1 className='text-2xl font-semibold'>Have you looked out for help the subject regarding subject that is tough for you?</h1>
                 <div className='flex flex-col gap-4 my-3'>
                     <div className='flex gap-3'>
@@ -236,7 +239,7 @@ const Survey = () => {
                 </div>
             </div>
 
-            <div className=' my-5' onChange={(e)=> setUser({...user, 'prep': e.target.value})}>
+            <div className=' my-5' onChange={(e)=> setUser({...user, 'prep_status': e.target.value})}>
                 <h1 className='text-2xl font-semibold'>So far how is your preparation for upcoming examination</h1>
                 <div className='flex flex-col gap-4 my-3'>
                     <div className='flex gap-3'>
@@ -281,7 +284,7 @@ const Survey = () => {
                 </div>
             </div>
 
-            <div className=' my-5' onChange={(e)=> setUser({...user, 'experience AVLS': e.target.value})}>
+            <div className=' my-5' onChange={(e)=> setUser({...user, 'experience_alvs': e.target.value})}>
                 <h1 className='text-2xl font-semibold'>Have you experience AVLS(audio visual learning system)?</h1>
                 <div className='flex flex-col gap-4 my-3'>
                     <div className='flex gap-3'>
