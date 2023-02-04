@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Airtable from 'airtable';
 import { useNavigate } from "react-router-dom";
+import { BiMessageAltError } from 'react-icons/bi';
 
 const base = new Airtable({apiKey: import.meta.env.VITE_API_KEY}).base('apphpL7lHo7AHeRV9')
 
@@ -21,44 +22,49 @@ const Survey = () => {
         'opinions': '',
         'survey_partner' : ''
     })
-
+    const [error, setError] = useState('')
+    console.log(user)
     const handleSubmit = async (e) => {
         console.log('clicked')
         e.preventDefault()
-        if(user.s_name && user.phone_no && user.email && user.email.includes('@') ) {
-            base('survey').create([
-                {
-                    fields : {
-                        name: user.s_name,
-                        phone_no: '+91' + user.phone_no,
-                        email : user.email,
-                        satisfaction: user.satisfaction,
-                        field: user.field,
-                        troublesome_sub: user.troublesome_sub,
-                        help_taken: user.help_taken,
-                        exam: user.exam,
-                        prep_status: user.prep_status,
-                        experience_alvs: user.experience_alvs,
-                        views: user.views,
-                        opinions: user.opinions,
-                        partner : user.survey_partner
+        if(user.s_name && user.phone_no && (user.phone_no.length === 10) && user.email && user.email.includes('@')){
+            if(user.satisfaction && user.field && user.troublesome_sub && user.help_taken && user.exam && user.prep_status && user.experience_alvs && user.views && user.views && user.survey_partner) {
+                base('survey').create([
+                    {
+                        fields : {
+                            name: user.s_name,
+                            phone_no: '+91' + user.phone_no,
+                            email : user.email,
+                            satisfaction: user.satisfaction,
+                            field: user.field,
+                            troublesome_sub: user.troublesome_sub,
+                            help_taken: user.help_taken,
+                            exam: user.exam,
+                            prep_status: user.prep_status,
+                            experience_alvs: user.experience_alvs,
+                            views: user.views,
+                            opinions: user.opinions,
+                            partner : user.survey_partner
+                        }
                     }
-                }
-              ], function(err, records) {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
-                records.forEach(function (record) {
-                  console.log(record.getId());
-                });
-              });
-              navigate("/exit");
+                  ], function(err, records) {
+                    if (err) {
+                      console.error(err);
+                      return;
+                    }
+                    records.forEach(function (record) {
+                      console.log(record.getId());
+                    });
+                  });
+                  navigate("/exit");
+            } else {
+                setError('please enter all the fields')
+            }
         } else {
-            alert('enter personal information correctly')
+            setError('enter personal info correctly')
         }
     }
-    
+
   return (
     <main className='md:p-[5rem] p-[2rem]'>
         <form className='shadow-md rounded-lg md:w-[60%] mx-auto flex flex-col gap-5 md:p-16 p-8'>
@@ -342,12 +348,12 @@ const Survey = () => {
 
             <div>
                 <h1 className='text-2xl font-semibold'>Survey partner</h1>
-                <select value={user.partner} onChange={(e) => setUser({...user, 'partner':e.target.value})} className='w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                <select value={user.survey_partner} onChange={(e) => setUser({...user, 'survey_partner':e.target.value})} className='w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
                     <option value="Sanskar">Sanskar</option>
                     <option value="Pranav">Pranav</option>
                 </select>
             </div>
-
+            <h1 className='text-center text-md font-thin text-red-600'> {"*" + error} </h1>
             <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-2xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
                 Submit
             </button>
