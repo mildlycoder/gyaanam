@@ -6,10 +6,6 @@ import {BiSun} from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
-    const [loading, setLoading] = useState(false)
-    const [allposts, setAllPosts] = useState(null)
-  
-    const [searchText, setSearchText] = useState('ifdsh')
     return (
     <main className=''>
         <section className=' bg-[#0A2640] py-[1rem] pb-[10rem]'>
@@ -35,8 +31,7 @@ const Home = () => {
             </div>
 
             <article className='my-[4rem] w-[90%] md:w-[60%] mx-auto mb-[7rem]'>
-                <h1 className='text-gray-500 text-2xl my-10 font-thin'>Our vision</h1>
-                <h2 className='text-[#0A2640] text-4xl my-10'>Connecting with students</h2>
+                <h2 className='text-[#0A2640] text-4xl my-10'>Why this survey?</h2>
                 <p className='text-gray-500 text-xl my-3'>
                 We understand that studying can be a challenging task for students, and we want to help. That's why we're conducting a survey to understand the difficulties and hardships that students face when it comes to their studies.
                 </p>
@@ -48,9 +43,7 @@ const Home = () => {
 
         <section className='bg-[#0A2640] py-[2rem] '>
             <article className='my-[4rem] w-[90%] md:w-[60%] mx-auto text-neutral-100'>
-                <h1 className='text-2xl my-10 font-thin'>Our values</h1>
                 <h2 className='text-4xl my-10'>Why Gyaanam Educare Tutorials?</h2>
-                <h3 className='text-xl my-3'>Be a part of this survey and help us provide better education for all.</h3>
             </article>
             <section className='w-[90%] md:w-[60%] mx-auto flex flex-col gap-12 mb-[6rem]'>
                 <article className='flex gap-4'>
@@ -86,10 +79,12 @@ const Home = () => {
         <section className='md:px-[8rem] py-[3rem] pb-[1rem]'>
             <section className='w-[90%] md:w-[75%] mx-auto flex flex-col md:flex-row justify-between gap-5'>
                 <article>
-                    <h1 className='text-5xl my-8'>Every student's study companion</h1>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><FiFeather/>understanding the problem</p>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><AiOutlineEye/>understanding the problem</p>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><BiSun/>understanding the problem</p>
+                    <h1 className='text-5xl my-8'>7-days free trial session</h1>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'>Focus on weakness</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'>Understanding the chapter</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'>Group discussion</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'>Visualization of the chapter</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'>Improved reading and writing skills</p>
                 </article>
                 <img src='/assets/hero-2.png' className='w-[45%]'/>
             </section>
