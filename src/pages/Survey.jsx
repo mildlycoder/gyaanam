@@ -72,6 +72,15 @@ const Survey = () => {
             setError("*enter personal information correctly")
         }
     }
+
+    const checkNextStep = (e) => {
+        e.preventDefault()
+        if(user.exam && user.help_taken && user.troublesome_sub && user.satisfaction && user.field){
+            setStep(step + 1)
+        } else {
+            setError("*please answer all the questions")
+        }
+    }
   return (
     <main className='md:p-[5rem] p-[2rem]'>
         <form className='shadow-md rounded-lg md:w-[60%] mx-auto flex flex-col gap-5 md:p-16 p-8'>
@@ -264,7 +273,8 @@ const Survey = () => {
                         </div>
                     </div>
                 </div>
-                <button  disabled={!(user.exam && user.help_taken && user.troublesome_sub && user.satisfaction && user.field)} onClick={()=> setStep(step + 1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full w-[30%]'>
+                <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
+                <button onClick={checkNextStep} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full w-[30%]'>
                     next<AiOutlineArrowRight/>
                 </button>
                 </>
