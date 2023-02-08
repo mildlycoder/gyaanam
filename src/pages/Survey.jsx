@@ -32,6 +32,7 @@ const Survey = () => {
         const randomIndex = Math.floor(Math.random() * 9)
         const generatedCode = codes[randomIndex]
         setUser({...user, 'coupon_code': generatedCode})
+        console.log(user)
     },[])
 
     const [error, setError] = useState("")
@@ -92,11 +93,11 @@ const Survey = () => {
         }
     }
   return (
-    <main className='md:p-[5rem] p-[2rem]'>
-        <form className='shadow-md rounded-lg md:w-[60%] mx-auto flex flex-col gap-5 md:p-16 p-8'>
+    <main className='md:p-[5rem] p-[1rem] py-auto min-h-screen'>
+        <form className='md:w-[60%] mx-auto flex flex-col  md:gap-5'>
             {
                 (step === 1) &&
-                <>
+                <section className='shadow-md rounded-lg my-[5rem] md:p-16 p-6'>
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Your name <span className='font-normal leading-10'>(नाम)</span></h1>
                     <input 
@@ -125,14 +126,14 @@ const Survey = () => {
                     />
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full w-[30%]'>
+                <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto my-[2rem] py-2 rounded-l-full rounded-r-full w-[55%] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
-                </>
+                </section>
             }
             {
                 (step === 2)&&
-                <>
+                <section className='shadow-md rounded-lg md:p-16 p-6'>
                 <div className=' my-5' onChange={(e)=> setUser({...user, 'field': e.target.value})}>
                     <h1 className='md:md:text-2xl text-xl tex-xl font-semibold'>Field chosen <span className='font-normal leading-10'>(चुना हुआ क्षेत्र)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
@@ -284,15 +285,15 @@ const Survey = () => {
                     </div>
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={checkNextStep} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full w-[30%]'>
+                <button onClick={checkNextStep} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full w-[55%] my-[1rem] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
-                </>
+                </section>
             } 
            
             {
                 (step === 3) &&
-                <>
+                <section className='shadow-md rounded-lg md:p-16 p-6 flex flex-col md:gap-5 gap-2'>
                 <div className=' my-5' onChange={(e)=> setUser({...user, 'prep_status': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>So far how is your preparation for upcoming examination? <span className='font-normal leading-10'>(अब तक आपकी आगामी परीक्षा की तैयारी कैसी है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
@@ -399,10 +400,10 @@ const Survey = () => {
                     </select>
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] md:text-2xl text-xl px-8 py-3 font-semibold rounded-l-full rounded-r-full'>
+                <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] md:text-2xl text-xl px-8 py-2 font-semibold rounded-l-full rounded-r-full md:w-[55%] w-[90%] mx-auto'>
                     Submit
                 </button>
-                </>
+                </section>
             }
             {
                (step === 4)&& 
