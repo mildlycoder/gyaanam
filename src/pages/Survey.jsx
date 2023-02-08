@@ -10,6 +10,7 @@ const Survey = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(1)
     const [code, setCode] = useState("")
+    const codes = ["GYAAN_FGX", "GYAAN_6Y9", "GYAAN_L2X", "GYAAN_ZZ0", "GYAAN_GRG", "GYAAN_1UJ", "GYAAN_CHV", "GYAAN_JVF", "GYAAN_HP7", "GYAAN_PK4"]
     const [user, setUser] = useState({
         's_name': '',
         'phone_no': '',
@@ -23,13 +24,20 @@ const Survey = () => {
         'experience_alvs': '',
         'views': '',
         'opinions': '',
-        'survey_partner' : ''
+        'survey_partner' : '',
+        'coupon_code' : ''
     })
+
+    useEffect(()=>{
+        const randomIndex = Math.floor(Math.random() * 9)
+        const generatedCode = codes[randomIndex]
+        setUser({...user, 'coupon_code': generatedCode})
+    },[])
+
     const [error, setError] = useState("")
-    console.log(user)
     const handleSubmit = async (e) => {
-        console.log('clicked')
         e.preventDefault()
+        console.log('clicked')
         if(user.satisfaction && user.field && user.troublesome_sub && user.help_taken && user.exam && user.prep_status && user.experience_alvs && user.views && user.views && user.survey_partner) {
             base('survey').create([
                 {
@@ -46,7 +54,8 @@ const Survey = () => {
                         experience_alvs: user.experience_alvs,
                         views: user.views,
                         opinions: user.opinions,
-                        partner : user.survey_partner
+                        partner : user.survey_partner,
+                        coupon_code: user.coupon_code
                     }
                 }
               ], function(err, records) {
@@ -55,7 +64,8 @@ const Survey = () => {
                   return;
                 }
                 records.forEach(function (record) {
-                  setCode(record.getId());
+                  console.log(record.getId());
+                  console.log(user)
                 });
               });
               setStep(step+1)
@@ -383,6 +393,7 @@ const Survey = () => {
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Survey partner</h1>
                     <select value={user.survey_partner} onChange={(e) => setUser({...user, 'survey_partner':e.target.value})} className='w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                        <option value="">choose a survey partner</option>
                         <option value="Sanskar">Sanskar</option>
                         <option value="Pranav">Pranav</option>
                     </select>
@@ -397,7 +408,7 @@ const Survey = () => {
                (step === 4)&& 
                 <div className='min-h-screen flex flex-col gap-4 items-center justify-center'>
                     <h1 className='text-3xl font-semibold'>Thank you for filling our survey!</h1>
-                    <h2 className='md:text-2xl text-xl font-semibold'> your coupon code is {code}</h2>
+                    <h2 className='md:text-2xl text-xl font-semibold'> your coupon code is {user.coupon_code}</h2>
                 </div>
             }
         </form>
