@@ -14,17 +14,21 @@ const Survey = () => {
     const [user, setUser] = useState({
         's_name': '',
         'phone_no': '',
-        'email': '',
-        'satisfaction': '',
-        'field': '',
-        'troublesome_sub': '',
-        'help_taken': '',
-        'exam': '',
-        'prep_status': '',
-        'experience_alvs': '',
-        'views': '',
+        'school': '',
+        'satisfaction_tutorials': '',
+        'grade': '',
+        'board': '',
+        'academic_status': '',
+        'curriculum_status': '',
+        'curriculum_issue': '',
+        'difficult_sub': '',
+        'changes': '',
+        'library_need': '',
+        'batch_student_efficiency' : '',
+        'learning_methods' : '',
+        'doubt_frequency': '',
         'opinions': '',
-        'survey_partner' : '',
+        'survey_partner': '',
         'coupon_code' : ''
     })
 
@@ -33,28 +37,29 @@ const Survey = () => {
         const generatedCode = codes[randomIndex]
         setUser({...user, 'coupon_code': generatedCode})
     },[])
-
     const [error, setError] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('clicked')
-        if(user.satisfaction && user.field && user.troublesome_sub && user.help_taken && user.exam && user.prep_status && user.experience_alvs && user.views && user.views && user.survey_partner) {
+        console.log(user.curriculum_status)
+        if(user.s_name && user.phone_no && user.school && user.grade && user.board && user.satisfaction_tutorials && user.academic_status && user.difficult_sub && user.curriculum_issue && user.curriculum_status && user.changes && user.library_need && user.batch_student_efficiency && user.survey_partner) {
             base('survey').create([
                 {
                     fields : {
                         name: user.s_name,
                         phone_no: '+91' + user.phone_no,
-                        email : user.email,
-                        satisfaction: user.satisfaction,
-                        field: user.field,
-                        troublesome_sub: user.troublesome_sub,
-                        help_taken: user.help_taken,
-                        exam: user.exam,
-                        prep_status: user.prep_status,
-                        experience_alvs: user.experience_alvs,
-                        views: user.views,
-                        opinions: user.opinions,
-                        partner : user.survey_partner,
+                        school : user.school,
+                        grade: user.grade,
+                        board: user.board,
+                        satisfaction_tutorials: user.satisfaction,
+                        academic_status: user.academic_status,
+                        difficult_sub: user.difficult_sub,
+                        curriculum_issue: user.curriculum_issue,
+                        curriculum_status: user.curriculum_status,
+                        changes: user.changes,
+                        library_need: user.library_need,
+                        batch_student_efficiency: user.batch_student_efficiency,
+                        partner: user.survey_partner,
                         coupon_code: user.coupon_code
                     }
                 }
@@ -76,7 +81,7 @@ const Survey = () => {
 
     const checkPersonalInfo = (e) => {
         e.preventDefault()
-        if(user.s_name && user.phone_no && (user.phone_no.length === 10) && user.email && user.email.includes('@')){
+        if(user.s_name && user.phone_no && (user.phone_no.length === 10) && user.grade && user.board && user.school){
             setStep(step + 1)
         } else {
             setError("*enter personal information correctly")
@@ -85,8 +90,18 @@ const Survey = () => {
 
     const checkNextStep = (e) => {
         e.preventDefault()
-        if(user.exam && user.help_taken && user.troublesome_sub && user.satisfaction && user.field){
-            setStep(step + 1)
+        if(user.academic_status && user.curriculum_status && user.satisfaction_tutorials && user.difficult_sub){
+            if(user.curriculum_status === 'No'){
+                setUser({...user, 'curriculum_issue' : 'no issue'})
+                setStep(step + 1)
+            } 
+            if(user.curriculum_status === 'Yes'){
+                if(user.curriculum_issue){
+                    setStep(step + 1)
+                } else {
+                    setError("*please justify your issue regarding curriculum")
+                }
+            }
         } else {
             setError("*please answer all the questions")
         }
@@ -96,7 +111,7 @@ const Survey = () => {
         <form className='md:w-[60%] mx-auto flex flex-col  md:gap-5'>
             {
                 (step === 1) &&
-                <section className='shadow-md rounded-lg my-[5rem] md:p-16 p-6'>
+                <section className='shadow-md rounded-lg md:p-16 p-6'>
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Your name <span className='font-normal leading-10'>(नाम)</span></h1>
                     <input 
@@ -107,14 +122,15 @@ const Survey = () => {
                     />
                 </div>
                 <div>
-                    <h1 className='md:text-2xl text-xl font-semibold'>Email <span className='font-normal leading-10'>(ईमेल)</span></h1>
+                    <h1 className='md:text-2xl text-xl font-semibold'>School<span className='font-normal leading-10'>(विद्यालय)</span></h1>
                     <input 
-                    type='email'
+                    type='text'
                     className='border-[1px] border-black p-2 w-full rounded-r-full rounded-l-full'
-                    value={user.email}
-                    onChange={(e) => setUser({...user, 'email':e.target.value})}
+                    value={user.school}
+                    onChange={(e) => setUser({...user, 'school':e.target.value})}
                     />
                 </div>
+
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Phone no <span className='font-normal leading-10'>(फोन नंबर)</span></h1>
                     <input 
@@ -124,7 +140,33 @@ const Survey = () => {
                     onChange={(e) => setUser({...user, 'phone_no':e.target.value})}
                     />
                 </div>
-                <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
+
+                <div>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Grade<span className='font-normal leading-10'>(कक्षा)</span></h1>
+                    <select value={user.grade} onChange={(e) => setUser({...user, 'grade':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-1 border-2 border-gray-500'>
+                        <option value="">choose grade</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="9th">9th</option>
+                        <option value="10th">10th</option>
+                        <option value="11th">11th</option>
+                        <option value="12th">12th</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Board<span className='font-normal leading-10'>(बोर्ड)</span></h1>
+                    <select value={user.board} onChange={(e) => setUser({...user, 'board':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-1 border-2 border-gray-500'>
+                        <option value="">choose board</option>
+                        <option value="ICSE">ICSE</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="State board">State board</option>
+                    </select>
+                </div>
+
+                <h1 className='text-center text-md mt-[1rem] font-thin text-red-600'> {error} </h1>
                 <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto my-[2rem] py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
@@ -133,37 +175,45 @@ const Survey = () => {
             {
                 (step === 2)&&
                 <section className='shadow-md rounded-lg md:p-16 p-6'>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'field': e.target.value})}>
-                    <h1 className='md:md:text-2xl text-xl tex-xl font-semibold'>Field chosen <span className='font-normal leading-10'>(चुना हुआ क्षेत्र)</span></h1>
+                <div className=' my-5' onChange={(e)=> setUser({...user, 'academic_status': e.target.value})}>
+                    <h1 className='md:md:text-2xl text-xl tex-xl font-semibold'>What is the current status of your academics? <span className='font-normal leading-10'>(आपके शिक्षाविदों की वर्तमान स्थिति क्या है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='Science'
-                        name='field'
-                        /><label className='md:md:text-xl text-lg font-semibold'>Science <span className='font-normal leading-10'>(विज्ञान)</span></label>
+                        value='excellent'
+                        name='acad_status'
+                        /><label className='md:md:text-xl text-lg font-semibold'>Excellent <span className='font-normal leading-10'>(उत्कृष्ट)</span></label>
                         </div>
 
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='Arts'
-                        name='field'
-                        /><label className='md:md:text-xl text-lg font-semibold'>Arts <span className='font-normal leading-10'>(कला)</span></label>
+                        value='Good'
+                        name='acad_status'
+                        /><label className='md:md:text-xl text-lg font-semibold'>Good <span className='font-normal leading-10'>(अच्छा)</span></label>
                         </div>
 
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='Commerce'
-                        name='t-sub'
-                        /><label className='md:md:text-xl text-lg  font-semibold'>Commerce <span className='font-normal leading-10'>(व्यापार)</span></label>
+                        value='Average'
+                        name='acad_status'
+                        /><label className='md:md:text-xl text-lg  font-semibold'>Average<span className='font-normal leading-10'>(सामान्य)</span></label>
+                        </div>
+
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='Poor'
+                        name='acad_status'
+                        /><label className='md:md:text-xl text-lg  font-semibold'>Poor<span className='font-normal leading-10'>(खराब)</span></label>
                         </div>
                     </div>
                 </div>
 
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'satisfaction': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>How satisfied are you with your studies? <span className='font-normal leading-10'>(आप अपनी पढ़ाई से कितने संतुष्ट हैं?)</span></h1>
+                <div className=' my-5' onChange={(e)=> setUser({...user, 'satisfaction_tutorials': e.target.value})}>
+                    <h1 className='md:text-2xl text-xl font-semibold'>How satisfied are you with your current tutorials? (If any)<span className='font-normal leading-10'>(आप अपने मौजूदा ट्यूटोरियल्स से कितने संतुष्ट हैं? (यदि कोई))</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
                         <input
@@ -199,50 +249,28 @@ const Survey = () => {
                     </div>
                 </div>
 
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'troublesome_sub': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>What subject seems most toublesome to you? <span className='font-normal leading-10'>(कौन सा विषय आपको सबसे अधिक कठिन लगता है?)</span></h1>
+                <div className=' my-5'>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Which subject seems the most difficult for you? <span className='font-normal leading-10'>(आपको कौन सा विषय सबसे कठिन लगता है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
                         <input
-                        type='radio' 
-                        value='Maths'
+                        type='text' 
+                        value={user.difficult_sub}
                         name='t-sub'
-                        /><label className='md:text-xl text-lg font-semibold'>Maths <span className='font-normal leading-10'>(गणित)</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Physics'
-                        name='t-sub'
-                        /><label className='md:text-xl text-lg font-semibold'>Physics <span className='font-normal leading-10'>(भौतिक विज्ञान)</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Chemistry'
-                        name='t-sub'
-                        /><label className='md:text-xl text-lg font-semibold'>Chemistry <span className='font-normal leading-10'>(रसायन विज्ञान)</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Biology'
-                        name='t-sub'
-                        /><label className='md:text-xl text-lg font-semibold'>Biology <span className='font-normal leading-10'>(जीवविज्ञान)</span></label>
+                        className='border-[1px] border-black p-2 md:w-[50%] rounded-r-full rounded-l-full'
+                        onChange={(e)=> setUser({...user, 'difficult_sub': e.target.value})}
+                        />
                         </div>
                     </div>
                 </div>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'help_taken': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>Have you looked out for help the subject regarding subject that is tough for you? <span className='font-normal leading-10'>(क्या आपने उस विषय के बारे में मदद मांगी है जो आपके लिए कठिन है?)</span></h1>
-                    <div className='flex flex-col gap-4 my-3'>
+                <div className=' my-5' >
+                    <h1 className='md:text-2xl text-xl font-semibold'>Are you facing any issue regarding the curriculum. If yes, justify<span className='font-normal leading-10'>(क्या आप पाठ्यक्रम के संबंध में किसी समस्या का सामना कर रहे हैं। यदि हाँ, तो औचित्य दें)</span></h1>
+                    <div className='flex flex-col gap-4 my-3' onChange={(e)=> setUser({...user, 'curriculum_status': e.target.value})}>
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
                         value='Yes'
-                        name='help'
+                        name='curriculum_status'
                         /><label className='md:text-xl text-lg font-semibold'>yes <span className='font-normal leading-10'>(हाँ)</span></label>
                         </div>
 
@@ -250,37 +278,56 @@ const Survey = () => {
                         <input
                         type='radio' 
                         value='No'
-                        name='help'
+                        name='curriculum_status'
                         /><label className='md:text-xl text-lg font-semibold'>No <span className='font-normal leading-10'>(नहीं)</span></label>
                         </div>
                     </div>
+
+                    <div className='flex gap-3'>
+                        <input
+                        type='text' 
+                        value={user.curriculum_issue}
+                        name='curriculum_issue'
+                        className='border-[1px] border-black p-2 md:w-[50%] rounded-r-full rounded-l-full'
+                        onChange={(e)=> setUser({...user, 'curriculum_issue': e.target.value})}
+                        />
+                    </div>
                 </div>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'exam': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>What entrance exam are you preparing for? <span className='font-normal leading-10'>(आप किस प्रवेश परीक्षा की तैयारी कर रहे हैं?)</span></h1>
+                <div className=' my-5' onChange={(e)=> setUser({...user, 'changes': e.target.value})}>
+                    <h1 className='md:text-2xl text-xl font-semibold'>What changes in the learning method, do you think will help upbringing your difficulties?  <span className='font-normal leading-10'>(आप किस प्रवेश परीक्षा की तैयारी कर रहे हैं?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='NEET'
-                        name='exam'
-                        /><label className='md:text-xl text-lg font-semibold'>NEET</label>
+                        value='Change in teaching method'
+                        name='Change '
+                        /><label className='md:text-xl text-lg font-semibold'>Change in teaching method<span className='font-normal leading-10'>(शिक्षण पद्धति में बदलाव)</span></label>
+                        </div>
+                        
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='Change in learning method.'
+                        name='Change '
+                        /><label className='md:text-xl text-lg font-semibold'>Change in learning method. <span className='font-normal leading-10'>(सीखने के तरीके में बदलाव।)</span></label>
+                        </div>
+                        
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='Extra revision sessions'
+                        name='Change '
+                        /><label className='md:text-xl text-lg font-semibold'>Extra revision sessions<span className='font-normal leading-10'>(अतिरिक्त संशोधन सत्र)</span></label>
                         </div>
 
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='MH-CET'
-                        name='exam'
-                        /><label className='md:text-xl text-lg font-semibold'>MH-CET</label>
+                        value='Regular self test series '
+                        name='Change '
+                        /><label className='md:text-xl text-lg font-semibold'>Regular self test series<span className='font-normal leading-10'>(नियमित स्व परीक्षण)</span></label>
                         </div>
 
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='JEE'
-                        name='exam'
-                        /><label className='md:text-xl text-lg font-semibold'>JEE</label>
-                        </div>
                     </div>
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
@@ -293,95 +340,124 @@ const Survey = () => {
             {
                 (step === 3) &&
                 <section className='shadow-md rounded-lg md:p-16 p-6 flex flex-col md:gap-5 gap-2'>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'prep_status': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>So far how is your preparation for upcoming examination? <span className='font-normal leading-10'>(अब तक आपकी आगामी परीक्षा की तैयारी कैसी है?)</span></h1>
-                    <div className='flex flex-col gap-4 my-3'>
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Excellent'
-                        name='prep'
-                        /><label className='md:text-xl text-lg font-semibold'>Excellent <span className='font-normal leading-10'>(उत्कृष्ट)</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Good'
-                        name='prep'
-                        /><label className='md:text-xl text-lg font-semibold'>Good <span className='font-normal leading-10'>(अच्छा)</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Average'
-                        name='prep'
-                        /><label className='md:text-xl text-lg font-semibold'>Average <span className='font-normal leading-10'>(सामान्य)</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Below average'
-                        name='prep'
-                        /><label className='md:text-xl text-lg font-semibold'>Below average <span className='font-normal leading-10'>((सामान्य से नीचे))</span></label>
-                        </div>
-
-                        <div className='flex gap-3'>
-                        <input
-                        type='radio' 
-                        value='Poor'
-                        name='prep'
-                        /><label className='md:text-xl text-lg font-semibold'>Poor <span className='font-normal leading-10'>(खराब)</span></label>
-                        </div>
-                    </div>
-                </div>
-
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'experience_alvs': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>Have you experience AVLS(audio visual learning system)? <span className='font-normal leading-10'>(क्या आपने A.V.L.S (ऑडियो विजुअल लर्निंग सिस्टम) का अनुभव किया है?)</span></h1>
-                    <div className='flex flex-col gap-4 my-3'>
+                <div className=' my-5' onChange={(e)=> setUser({...user, 'library_need': e.target.value})}>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Do you think library is one of the necessity for a tutorial, that can be beneficial to you? <span className='font-normal leading-10'>(क्या आपको लगता है कि पुस्तकालय एक ट्यूटोरियल की आवश्यकता है, जो आपके लिए फायदेमंद हो सकता है?)</span></h1>
+                    <div className='flex flex-col gap-4 my-3' >
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
                         value='Yes'
-                        name='experience'
-                        /><label className='md:text-xl text-lg font-semibold'>Yes <span className='font-normal leading-10'>(हाँ)</span></label>
+                        name='library'
+                        /><label className='md:text-xl text-lg font-semibold'>yes <span className='font-normal leading-10'>(हाँ)</span></label>
                         </div>
 
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
                         value='No'
-                        name='experience'
+                        name='library'
                         /><label className='md:text-xl text-lg font-semibold'>No <span className='font-normal leading-10'>(नहीं)</span></label>
                         </div>
                     </div>
                 </div>
 
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'views': e.target.value})}>
-                    <h1 className='md:text-2xl text-xl font-semibold'>What are your views on audio visual learning? Will it make a positive difference in your learning method? <span className='font-normal leading-10'>(ऑडियो विजुअल लर्निंग पर आपके क्या विचार हैं? क्या इससे आपके सीखने के तरीके में कोई सकारात्मक बदलाव आएगा?)</span></h1>
-                    <div className='flex flex-col gap-4 my-3'>
+                <div className=' my-5' onChange={(e)=> setUser({...user, 'batch_student_efficiency': e.target.value})}>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Will a batch of minimal students, as much as 10-15 help you learn efficiently?  <span className='font-normal leading-10'>(क्या कम से कम 10-15 छात्रों का एक बैच आपको कुशलता से सीखने में मदद करेगा?)</span></h1>
+                    <div className='flex flex-col gap-4 my-3' >
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='it will make better'
-                        name='views'
-                        /><label className='md:text-xl text-lg font-semibold'>It will make learning and remembering better <span className='font-normal leading-10'>(यह सीखने और याद रखने को बेहतर बनाएगा)</span></label>
+                        value='Yes'
+                        name='batch'
+                        /><label className='md:text-xl text-lg font-semibold'>yes <span className='font-normal leading-10'>(हाँ)</span></label>
                         </div>
 
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
-                        value='Not helpful'
-                        name='views'
-                        /><label className='md:text-xl text-lg font-semibold'>It will not be so helpful <span className='font-normal leading-10'>(यह इतना मददगार नहीं होगा)</span></label>
+                        value='No'
+                        name='batch'
+                        /><label className='md:text-xl text-lg font-semibold'>No <span className='font-normal leading-10'>(नहीं)</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=' my-5' onChange={(e)=> setUser({...user, 'doubt_frequency': e.target.value})}>
+                    <h1 className='md:text-2xl text-xl font-semibold'>What is your point of view, regarding frequency of doubt clearing sessions? 
+                    <span className='font-normal leading-10'>(संदेह समाशोधन सत्रों की आवृत्ति के बारे में आपका क्या दृष्टिकोण है?)</span></h1>
+                    <div className='flex flex-col gap-4 my-3'>
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='After completion of each chapter. '
+                        name='doubts'
+                        /><label className='md:text-xl text-lg font-semibold'>After completion of each chapter.<span className='font-normal leading-10'>(प्रत्येक अध्याय के पूरा होने के बाद)</span></label>
+                        </div>
+
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='once a week'
+                        name='doubts'
+                        /><label className='md:text-xl text-lg font-semibold'>once a week <span className='font-normal leading-10'>(सप्ताह में एक बार)</span></label>
+                        </div>
+
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='twice a month'
+                        name='doubts'
+                        /><label className='md:text-xl text-lg font-semibold'>twice a month<span className='font-normal leading-10'>(महीने में दो बार)</span></label>
+                        </div>
+
+                        <div className='flex gap-3'>
+                        <input
+                        type='radio' 
+                        value='once a month'
+                        name='doubts'
+                        /><label className='md:text-xl text-lg font-semibold'>once a week <span className='font-normal leading-10'>(महीने में एक बार)</span></label>
+                        </div>
+
+                        <div className='flex flex-col gap-3'>
+                            <h1 className='md:text-xl text-lg font-semibold'>specify if other<span className='font-normal leading-10'>(यदि कोई अन्य हो तो निर्दिष्ट करें)</span></h1>
+                            <input
+                            type='text' 
+                            value={user.doubt_frequency}
+                            name='curriculum_issue'
+                            className='border-[1px] border-black p-2 md:w-[50%] rounded-r-full rounded-l-full'
+                            onChange={(e)=> setUser({...user, 'doubt_frequency': e.target.value})}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className=' my-5'>
+                    <h1 className='md:text-2xl text-xl font-semibold leading-8'>Arrange the following learning methods.:
+                    <br></br>1.	Listening in the lecture.
+                    <br></br>2.	Active class participation.
+                    <br></br>3.	Audio visual learning (projectors).
+                    <br></br>4.	Watching demonstrations.
+                    <br></br><span className='font-normal leading-10'>(निम्नलिखित शिक्षण विधियों को व्यवस्थित करें:
+                    <br></br>1. व्याख्यान में सुनना।
+                    <br></br>2. सक्रिय वर्ग भागीदारी।
+                    <br></br>3. ऑडियो विजुअल लर्निंग (प्रोजेक्टर)।
+                    <br></br>4. प्रदर्शनों को देखना।)</span></h1>
+                    <div className='flex flex-col gap-4 my-3'>
+
+                        <div className='flex flex-col gap-3'>
+                            <input
+                            type='text' 
+                            value={user.learning_methods}
+                            name='learning'
+                            className='border-[1px] border-black p-2 md:w-[50%] rounded-r-full rounded-l-full'
+                            onChange={(e)=> setUser({...user, 'learning_methods': e.target.value})}
+                            />
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h1 className='md:text-2xl text-xl font-semibold'>What are your opinions as a student, that would lead to betterment in the learning pattern? <span className='font-normal leading-10'>(एक छात्र के रूप में आपकी क्या राय है, जिससे सीखने के पैटर्न में सुधार होगा?)</span></h1>
+                    <h1 className='md:text-2xl text-xl font-semibold'>What are Share your opinions as a student/parent, that would help enhancing the betterment in learning.<span className='font-normal leading-10'>(एक छात्र/माता-पिता के रूप में अपनी राय साझा करें, जो सीखने में बेहतरी को बढ़ाने में मदद करेगा)</span></h1>
                     <textarea
                     type='text'
                     className='border-2 my-5 w-full border-gray-500 p-4 rounded-md'
@@ -392,7 +468,7 @@ const Survey = () => {
 
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Survey partner</h1>
-                    <select value={user.survey_partner} onChange={(e) => setUser({...user, 'survey_partner':e.target.value})} className='w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                    <select value={user.survey_partner} onChange={(e) => setUser({...user, 'survey_partner':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
                         <option value="">choose a survey partner</option>
                         <option value="Sanskar">Sanskar</option>
                         <option value="Pranav">Pranav</option>
