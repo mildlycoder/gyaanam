@@ -484,9 +484,10 @@ const Survey = () => {
             }
             {
                (step === 4)&& 
-                <div className='min-h-screen flex flex-col gap-4 items-center justify-center'>
+                <div className='min-h-screen flex flex-col gap-4 justify-center'>
                     <h1 className='text-3xl font-semibold'>Thank you for filling our survey!</h1>
-                    <h2 className='md:text-2xl text-xl font-semibold'> your coupon code is {user.coupon_code}</h2>
+                    <h2 className='md:text-2xl text-left text-xl font-semibold'> your coupon code is {user.coupon_code}</h2>
+                     <h3>Please take a screenshot or save this code</h3>
                 </div>
             }
         </form>
