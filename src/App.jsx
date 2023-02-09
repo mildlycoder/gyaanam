@@ -5,7 +5,7 @@ import { Navbar, Footer } from './components/layout components'
 
 const App = () => {
   return (
-    <div className=''>
+    <div className='font-manrope'>
       <BrowserRouter>
         <Navbar/>
         <Routes>

@@ -32,7 +32,6 @@ const Survey = () => {
         const randomIndex = Math.floor(Math.random() * 9)
         const generatedCode = codes[randomIndex]
         setUser({...user, 'coupon_code': generatedCode})
-        console.log(user)
     },[])
 
     const [error, setError] = useState("")
@@ -102,7 +101,7 @@ const Survey = () => {
                     <h1 className='md:text-2xl text-xl font-semibold'>Your name <span className='font-normal leading-10'>(नाम)</span></h1>
                     <input 
                     type='text'
-                    className='border-2 w-full border-black p-2 rounded-r-full rounded-l-full'
+                    className='border-[1px] w-full border-black p-2 rounded-r-full rounded-l-full'
                     value={user.s_name}
                     onChange={(e) => setUser({...user, 's_name':e.target.value})}
                     />
@@ -111,7 +110,7 @@ const Survey = () => {
                     <h1 className='md:text-2xl text-xl font-semibold'>Email <span className='font-normal leading-10'>(ईमेल)</span></h1>
                     <input 
                     type='email'
-                    className='border-2 border-gray-500 p-2 w-full rounded-r-full rounded-l-full'
+                    className='border-[1px] border-black p-2 w-full rounded-r-full rounded-l-full'
                     value={user.email}
                     onChange={(e) => setUser({...user, 'email':e.target.value})}
                     />
@@ -120,13 +119,13 @@ const Survey = () => {
                     <h1 className='md:text-2xl text-xl font-semibold'>Phone no <span className='font-normal leading-10'>(फोन नंबर)</span></h1>
                     <input 
                     type='tel'
-                    className='border-2 border-gray-500 p-2 w-full rounded-r-full rounded-l-full'
+                    className='border-[1px] border-black p-2 w-full rounded-r-full rounded-l-full'
                     value={user.phone_no}
                     onChange={(e) => setUser({...user, 'phone_no':e.target.value})}
                     />
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto my-[2rem] py-2 rounded-l-full rounded-r-full w-[55%] font-semibold'>
+                <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto my-[2rem] py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
                 </section>
@@ -285,7 +284,7 @@ const Survey = () => {
                     </div>
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={checkNextStep} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full w-[55%] my-[1rem] font-semibold'>
+                <button onClick={checkNextStep} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] my-[1rem] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
                 </section>
