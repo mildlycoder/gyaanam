@@ -51,12 +51,14 @@ const Survey = () => {
                         school : user.school,
                         grade: user.grade,
                         board: user.board,
-                        satisfaction_tutorials: user.satisfaction,
+                        satisfaction_tutorials: user.satisfaction_tutorials,
                         academic_status: user.academic_status,
                         difficult_sub: user.difficult_sub,
                         curriculum_issue: user.curriculum_issue,
                         curriculum_status: user.curriculum_status,
                         changes: user.changes,
+                        learning_methods: user.learning_methods,
+                        doubt_frequency: user.doubt_frequency,
                         library_need: user.library_need,
                         batch_student_efficiency: user.batch_student_efficiency,
                         partner: user.survey_partner,
@@ -111,7 +113,7 @@ const Survey = () => {
         <form className='md:w-[60%] mx-auto flex flex-col  md:gap-5'>
             {
                 (step === 1) &&
-                <section className='shadow-md rounded-lg md:p-16 p-6'>
+                <section className='shadow-md flex flex-col gap-3 rounded-lg md:p-16 p-6 pt-3'>
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Your name <span className='font-normal leading-10'>(नाम)</span></h1>
                     <input 
@@ -166,8 +168,8 @@ const Survey = () => {
                     </select>
                 </div>
 
-                <h1 className='text-center text-md mt-[1rem] font-thin text-red-600'> {error} </h1>
-                <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto my-[2rem] py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                <h1 className='text-center text-md  font-thin text-red-600'>{error}</h1>
+                <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
                 </section>
