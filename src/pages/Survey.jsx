@@ -25,7 +25,6 @@ const Survey = () => {
         'changes': '',
         'library_need': '',
         'batch_student_efficiency' : '',
-        'learning_methods' : '',
         'doubt_frequency': '',
         'opinions': '',
         'survey_partner': '',
@@ -40,6 +39,21 @@ const Survey = () => {
     const [error, setError] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(user.academic_status && user.curriculum_status && user.satisfaction_tutorials && user.difficult_sub){
+            if(user.curriculum_status === 'No'){
+                setUser({...user, 'curriculum_issue' : 'no issue'})
+                setStep(step + 1)
+            } 
+            if(user.curriculum_status === 'Yes'){
+                if(user.curriculum_issue){
+                    setStep(step + 1)
+                } else {
+                    setError("*please justify your issue regarding curriculum")
+                }
+            }
+        } else {
+            setError("*please answer all the questions")
+        }
         console.log('clicked')
         console.log(user.curriculum_status)
         if(user.s_name && user.phone_no && user.school && user.grade && user.board && user.satisfaction_tutorials && user.academic_status && user.difficult_sub && user.curriculum_issue && user.curriculum_status && user.changes && user.library_need && user.batch_student_efficiency && user.survey_partner) {
@@ -57,7 +71,6 @@ const Survey = () => {
                         curriculum_issue: user.curriculum_issue,
                         curriculum_status: user.curriculum_status,
                         changes: user.changes,
-                        learning_methods: user.learning_methods,
                         doubt_frequency: user.doubt_frequency,
                         library_need: user.library_need,
                         batch_student_efficiency: user.batch_student_efficiency,
@@ -90,24 +103,6 @@ const Survey = () => {
         }
     }
 
-    const checkNextStep = (e) => {
-        e.preventDefault()
-        if(user.academic_status && user.curriculum_status && user.satisfaction_tutorials && user.difficult_sub){
-            if(user.curriculum_status === 'No'){
-                setUser({...user, 'curriculum_issue' : 'no issue'})
-                setStep(step + 1)
-            } 
-            if(user.curriculum_status === 'Yes'){
-                if(user.curriculum_issue){
-                    setStep(step + 1)
-                } else {
-                    setError("*please justify your issue regarding curriculum")
-                }
-            }
-        } else {
-            setError("*please answer all the questions")
-        }
-    }
   return (
     <main className='md:p-[5rem] p-[1rem] py-auto min-h-screen'>
         <form className='md:w-[60%] mx-auto flex flex-col  md:gap-5'>
@@ -333,15 +328,6 @@ const Survey = () => {
                     </div>
                 </div>
                 <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={checkNextStep} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] my-[1rem] font-semibold'>
-                    next<AiOutlineArrowRight/>
-                </button>
-                </section>
-            } 
-           
-            {
-                (step === 3) &&
-                <section className='shadow-md rounded-lg md:p-16 p-6 flex flex-col md:gap-5 gap-2'>
                 <div className=' my-5' onChange={(e)=> setUser({...user, 'library_need': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>Do you think library is one of the necessity for a tutorial, that can be beneficial to you? <span className='font-normal leading-10'>(क्या आपको लगता है कि पुस्तकालय एक ट्यूटोरियल की आवश्यकता है, जो आपके लिए फायदेमंद हो सकता है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3' >
@@ -433,30 +419,7 @@ const Survey = () => {
                     </div>
                 </div>
 
-                <div className=' my-5'>
-                    <h1 className='md:text-2xl text-xl font-semibold leading-8'>Arrange the following learning methods.:
-                    <br></br>1.	Listening in the lecture.
-                    <br></br>2.	Active class participation.
-                    <br></br>3.	Audio visual learning (projectors).
-                    <br></br>4.	Watching demonstrations.
-                    <br></br><span className='font-normal leading-10'>(निम्नलिखित शिक्षण विधियों को व्यवस्थित करें:
-                    <br></br>1. व्याख्यान में सुनना।
-                    <br></br>2. सक्रिय वर्ग भागीदारी।
-                    <br></br>3. ऑडियो विजुअल लर्निंग (प्रोजेक्टर)।
-                    <br></br>4. प्रदर्शनों को देखना।)</span></h1>
-                    <div className='flex flex-col gap-4 my-3'>
-
-                        <div className='flex flex-col gap-3'>
-                            <input
-                            type='text' 
-                            value={user.learning_methods}
-                            name='learning'
-                            className='border-[1px] border-black p-2 md:w-[50%] rounded-r-full rounded-l-full'
-                            onChange={(e)=> setUser({...user, 'learning_methods': e.target.value})}
-                            />
-                        </div>
-                    </div>
-                </div>
+                
 
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>What are Share your opinions as a student/parent, that would help enhancing the betterment in learning.<span className='font-normal leading-10'>(एक छात्र/माता-पिता के रूप में अपनी राय साझा करें, जो सीखने में बेहतरी को बढ़ाने में मदद करेगा)</span></h1>
@@ -481,9 +444,10 @@ const Survey = () => {
                     Submit
                 </button>
                 </section>
-            }
+                
+            } 
             {
-               (step === 4)&& 
+               (step === 3)&& 
                 <div className='min-h-screen flex flex-col gap-4 justify-center'>
                     <h1 className='text-3xl font-semibold'>Thank you for filling our survey!</h1>
                     <h2 className='md:text-2xl text-left text-xl font-semibold'> your coupon code is {user.coupon_code}</h2>
