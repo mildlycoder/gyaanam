@@ -39,9 +39,8 @@ const Survey = () => {
     const [error, setError] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault()
-        checkIssue()
         console.log('clicked')
-        console.log(user.curriculum_status)
+        console.log(user)
         if(user.s_name && user.phone_no && user.school && user.grade && user.board && user.satisfaction_tutorials && user.academic_status && user.difficult_sub && user.curriculum_issue && user.curriculum_status && user.changes && user.library_need && user.batch_student_efficiency && user.survey_partner) {
             base('survey').create([
                 {
@@ -89,21 +88,15 @@ const Survey = () => {
         }
     }
 
-    const checkIssue = () => {
-        if(user.academic_status && user.curriculum_status && user.satisfaction_tutorials && user.difficult_sub){
-            if(user.curriculum_status === 'No'){
-                setUser({...user, 'curriculum_issue' : 'no issue'})
-                setStep(step + 1)
-            } 
-            if(user.curriculum_status === 'Yes'){
-                if(user.curriculum_issue){
-                    setStep(step + 1)
-                } else {
-                    setError("*please justify your issue regarding curriculum")
-                }
-            }
-        } else {
-            setError("*please answer all the questions")
+    const checkIssue = (e) => {
+        if(e.target.value === 'No'){
+            setUser({...user, 'curriculum_status' : 'No', 'curriculum_issue' : 'no issue'})
+            console.log(user)
+        } 
+        if(e.target.value === 'Yes' && user.curriculum_issue === ''){
+                setUser({...user, 'curriculum_status': 'Yes'})
+                setError("*please justify your issue regarding curriculum")
+                console.log(user)
         }
     }
 
@@ -265,7 +258,7 @@ const Survey = () => {
                 </div>
                 <div className=' my-5' >
                     <h1 className='md:text-2xl text-xl font-semibold'>Are you facing any issue regarding the curriculum. If yes, justify<span className='font-normal leading-10'>(क्या आप पाठ्यक्रम के संबंध में किसी समस्या का सामना कर रहे हैं। यदि हाँ, तो औचित्य दें)</span></h1>
-                    <div className='flex flex-col gap-4 my-3' onChange={(e)=> setUser({...user, 'curriculum_status': e.target.value})}>
+                    <div className='flex flex-col gap-4 my-3' onChange={(e) => checkIssue(e)}>
                         <div className='flex gap-3'>
                         <input
                         type='radio' 
@@ -330,7 +323,6 @@ const Survey = () => {
 
                     </div>
                 </div>
-                <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
                 <div className=' my-5' onChange={(e)=> setUser({...user, 'library_need': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>Do you think library is one of the necessity for a tutorial, that can be beneficial to you? <span className='font-normal leading-10'>(क्या आपको लगता है कि पुस्तकालय एक ट्यूटोरियल की आवश्यकता है, जो आपके लिए फायदेमंद हो सकता है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3' >
