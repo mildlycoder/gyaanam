@@ -85,11 +85,11 @@ const Home = () => {
             <section className='w-[80%] md:w-[85%] mx-auto flex flex-col md:flex-row justify-between gap-5'>
                 <article>
                     <h1 className='text-5xl my-8'>7-days free trial session</h1>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><RiFocus2Fill/>Focus on weakness</p>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><TbBooks/>Understanding the chapter</p>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><MdOutlineGroup/>Group discussion</p>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><BiSun/>Visualization of the chapter</p>
-                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><FiFeather/>Improved reading and writing skills</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><RiFocus2Fill/>Day 1 Aptitude test and counseling.</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><TbBooks/>Day 2 to Day 4 lectures.</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><MdOutlineGroup/>Day 5 Revision and Doubt clearing session.</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><BiSun/>Day 6 Test series day</p>
+                    <p className='hover:bg-[#0A2640] hover:text-neutral-100 transition-all p-3 w-[90%] text-lg rounded-md flex items-center gap-3'><FiFeather/>Day 7 PTM and analysed result declaration.</p>
                 </article>
                 <img src='/assets/hero-2.png' className='hidden md:block'/>
             </section>
