@@ -28,6 +28,9 @@ const Survey = () => {
         'doubt_frequency': '',
         'opinions': '',
         'survey_partner': '',
+        'free_trial': '',
+        'whatsapp_grp': '',
+        'annual_budget': '',
         'coupon_code' : ''
     })
 
@@ -60,6 +63,9 @@ const Survey = () => {
                         library_need: user.library_need,
                         batch_student_efficiency: user.batch_student_efficiency,
                         partner: user.survey_partner,
+                        annual_budget: user.annual_budget,
+                        whatsapp_grp: user.whatsapp_grp,
+                        free_trial: user.free_trial,
                         coupon_code: user.coupon_code
                     }
                 }
@@ -100,12 +106,12 @@ const Survey = () => {
         }
     }
 
-  return (
+    return (
     <main className='md:p-[5rem] p-[1rem] py-auto min-h-screen'>
-        <form className='md:w-[60%] mx-auto flex flex-col  md:gap-5'>
+        <form className=' mx-auto flex flex-col  md:gap-5'>
             {
                 (step === 1) &&
-                <section className='shadow-md flex flex-col gap-3 rounded-lg md:p-16 p-6 pt-3'>
+                <section className='md:w-[60%] flex flex-col gap-3 rounded-lg md:p-16 p-6 pt-3'>
                 <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Your name <span className='font-normal leading-10'>(नाम)</span></h1>
                     <input 
@@ -160,16 +166,17 @@ const Survey = () => {
                     </select>
                 </div>
 
-                <h1 className='text-center text-md  font-thin text-red-600'>{error}</h1>
                 <button onClick={checkPersonalInfo} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
                     next<AiOutlineArrowRight/>
                 </button>
                 </section>
             }
             {
-                (step === 2)&&
+                
                 <section className='shadow-md rounded-lg md:p-16 p-6'>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'academic_status': e.target.value})}>
+                {
+                    (step === 2)&&
+                    <div className=' my-5' onChange={(e)=> setUser({...user, 'academic_status': e.target.value})}>
                     <h1 className='md:md:text-2xl text-xl tex-xl font-semibold'>What is the current status of your academics? <span className='font-normal leading-10'>(आपके शिक्षाविदों की वर्तमान स्थिति क्या है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
@@ -204,9 +211,15 @@ const Survey = () => {
                         /><label className='md:md:text-xl text-lg  font-semibold'>Poor<span className='font-normal leading-10'>(खराब)</span></label>
                         </div>
                     </div>
+                    <button disabled={!user.academic_status} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
                 </div>
+                }
 
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'satisfaction_tutorials': e.target.value})}>
+                {
+                    (step === 3)&&
+                    <div className=' my-5' onChange={(e)=> setUser({...user, 'satisfaction_tutorials': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>How satisfied are you with your current tutorials? (If any)<span className='font-normal leading-10'>(आप अपने मौजूदा ट्यूटोरियल्स से कितने संतुष्ट हैं? (यदि कोई))</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
@@ -241,22 +254,34 @@ const Survey = () => {
                         /><label className='md:text-xl text-lg font-semibold'>not at all satisfied <span className='font-normal leading-10'>(बिल्कुल संतुष्ट नहीं)</span></label>
                         </div>
                     </div>
-                </div>
+                    <button disabled={!user.satisfaction_tutorials} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                }
 
-                <div className=' my-5'>
-                <h1 className='md:text-2xl text-xl font-semibold'>Which subject seems the most difficult for you? <span className='font-normal leading-10'>(आपको कौन सा विषय सबसे कठिन लगता है?)</span></h1>
-                    <select value={user.difficult_sub} onChange={(e) => setUser({...user, 'difficult_sub':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-1 border-2 border-gray-500'>
-                        <option value="">choose subject</option>
-                        <option value="physics">Physics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="biology">Biology</option>
-                        <option value="Maths">Maths</option>
-                        <option value="history">History</option>
-                        <option value="geography">Geography</option>
-                        <option value="social science">social science</option>
-                    </select>
-                </div>
-                <div className=' my-5' >
+                {
+                    (step === 4)&&
+                    <div className=' my-5'>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Which subject seems the most difficult for you? <span className='font-normal leading-10'>(आपको कौन सा विषय सबसे कठिन लगता है?)</span></h1>
+                        <select value={user.difficult_sub} onChange={(e) => setUser({...user, 'difficult_sub':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-1 border-2 border-gray-500'>
+                            <option value="">choose subject</option>
+                            <option value="physics">Physics</option>
+                            <option value="chemistry">Chemistry</option>
+                            <option value="biology">Biology</option>
+                            <option value="Maths">Maths</option>
+                            <option value="history">History</option>
+                            <option value="geography">Geography</option>
+                            <option value="social science">social science</option>
+                        </select>
+                        <button disabled={!user.difficult_sub} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full my-[1rem] rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                        next<AiOutlineArrowRight/>
+                        </button>
+                    </div>
+                }
+                {
+                    (step === 5)&&
+                    <div className=' my-5' >
                     <h1 className='md:text-2xl text-xl font-semibold'>Are you facing any issue regarding the curriculum. If yes, justify<span className='font-normal leading-10'>(क्या आप पाठ्यक्रम के संबंध में किसी समस्या का सामना कर रहे हैं। यदि हाँ, तो औचित्य दें)</span></h1>
                     <div className='flex flex-col gap-4 my-3' onChange={(e) => checkIssue(e)}>
                         <div className='flex gap-3'>
@@ -285,8 +310,14 @@ const Survey = () => {
                         onChange={(e)=> setUser({...user, 'curriculum_issue': e.target.value})}
                         />
                     </div>
+                    <button disabled={!(user.curriculum_status && user.curriculum_issue)} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center my-[2rem] mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
                 </div>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'changes': e.target.value})}>
+                }
+                {
+                    (step === 6)&&
+                    <div className=' my-5' onChange={(e)=> setUser({...user, 'changes': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>What changes in the learning method, do you think will help upbringing your difficulties?  <span className='font-normal leading-10'>(आप किस प्रवेश परीक्षा की तैयारी कर रहे हैं?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
                         <div className='flex gap-3'>
@@ -320,10 +351,15 @@ const Survey = () => {
                         name='Change '
                         /><label className='md:text-xl text-lg font-semibold'>Regular self test series<span className='font-normal leading-10'>(नियमित स्व परीक्षण)</span></label>
                         </div>
-
                     </div>
-                </div>
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'library_need': e.target.value})}>
+                    <button disabled={!user.changes} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                }
+                {
+                    (step === 7)&&
+                    <div className=' my-5' onChange={(e)=> setUser({...user, 'library_need': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>Do you think library is one of the necessity for a tutorial, that can be beneficial to you? <span className='font-normal leading-10'>(क्या आपको लगता है कि पुस्तकालय एक ट्यूटोरियल की आवश्यकता है, जो आपके लिए फायदेमंद हो सकता है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3' >
                         <div className='flex gap-3'>
@@ -342,9 +378,14 @@ const Survey = () => {
                         /><label className='md:text-xl text-lg font-semibold'>No <span className='font-normal leading-10'>(नहीं)</span></label>
                         </div>
                     </div>
-                </div>
-
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'batch_student_efficiency': e.target.value})}>
+                    <button disabled={!user.library_need} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                }
+                {
+                    (step === 8)&&
+                    <div className=' my-5' onChange={(e)=> setUser({...user, 'batch_student_efficiency': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>Will a batch of minimal students, as much as 10-15 help you learn efficiently?  <span className='font-normal leading-10'>(क्या कम से कम 10-15 छात्रों का एक बैच आपको कुशलता से सीखने में मदद करेगा?)</span></h1>
                     <div className='flex flex-col gap-4 my-3' >
                         <div className='flex gap-3'>
@@ -363,9 +404,14 @@ const Survey = () => {
                         /><label className='md:text-xl text-lg font-semibold'>No <span className='font-normal leading-10'>(नहीं)</span></label>
                         </div>
                     </div>
-                </div>
-
-                <div className=' my-5' onChange={(e)=> setUser({...user, 'doubt_frequency': e.target.value})}>
+                    <button disabled={!user.batch_student_efficiency} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                }
+                {
+                    (step === 9)&&
+                    <div className=' my-5' onChange={(e)=> setUser({...user, 'doubt_frequency': e.target.value})}>
                     <h1 className='md:text-2xl text-xl font-semibold'>What is your point of view, regarding frequency of doubt clearing sessions? 
                     <span className='font-normal leading-10'>(संदेह समाशोधन सत्रों की आवृत्ति के बारे में आपका क्या दृष्टिकोण है?)</span></h1>
                     <div className='flex flex-col gap-4 my-3'>
@@ -400,7 +446,7 @@ const Survey = () => {
                         name='doubts'
                         /><label className='md:text-xl text-lg font-semibold'>once a week <span className='font-normal leading-10'>(महीने में एक बार)</span></label>
                         </div>
-
+                
                         <div className='flex flex-col gap-3'>
                             <h1 className='md:text-xl text-lg font-semibold'>specify if other<span className='font-normal leading-10'>(यदि कोई अन्य हो तो निर्दिष्ट करें)</span></h1>
                             <input
@@ -412,11 +458,14 @@ const Survey = () => {
                             />
                         </div>
                     </div>
-                </div>
-
-                
-
-                <div>
+                    <button disabled={!user.doubt_frequency} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                }
+                {
+                    (step === 10)&&
+                    <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>What are Share your opinions as a student/parent, that would help enhancing the betterment in learning.<span className='font-normal leading-10'>(एक छात्र/माता-पिता के रूप में अपनी राय साझा करें, जो सीखने में बेहतरी को बढ़ाने में मदद करेगा)</span></h1>
                     <textarea
                     type='text'
@@ -424,31 +473,87 @@ const Survey = () => {
                     value={user.opinions}
                     onChange={(e) => setUser({...user, 'opinions':e.target.value})}
                     />
-                </div>
-
-                <div>
+                    <button onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                }
+                {
+                    (step === 11)&&
+                    <div>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Will you be interested in a Free-Trial by Gyanam?<span className='font-normal leading-10'>(क्या आप ज्ञानम द्वारा फ्री-ट्रायल में रुचि लेंगे?)</span></h1>
+                    <select value={user.free_trial} onChange={(e) => setUser({...user, 'free_trial':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                        <option value="">choose an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                        <option value="Maybe">Maybe</option>
+                    </select>
+                    <button disabled={!user.free_trial} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                    
+                }
+                {
+                    (step === 12)&&
+                    <div>
+                    <h1 className='md:text-2xl text-xl font-semibold'>Do you want us to add your phone number to our exclusive WhatsApp group for exciting offers and notifications by Gyaanam?<span className='font-normal leading-10'>(क्या आप चाहते हैं कि ज्ञानम द्वारा रोमांचक ऑफर और नोटिफिकेशन के लिए हम आपके फोन नंबर को हमारे विशेष व्हाट्सएप ग्रुप में जोड़ दें?)</span></h1>
+                    <select value={user.whatsapp_grp} onChange={(e) => setUser({...user, 'whatsapp_grp':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                        <option value="">choose an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    <button disabled={!user.whatsapp_grp} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                    
+                }
+                {
+                    (step === 13)&&
+                    <div>
+                   <h1 className='md:text-2xl text-xl font-semibold'>What budget would you prefer as your annual tutorial fee? <span className='font-normal leading-10'>(आप अपने वार्षिक शिक्षण शुल्क के रूप में कौन सा बजट पसंद करेंगे?)</span></h1>
+                    <select value={user.annual_budget} onChange={(e) => setUser({...user, 'annual_budget':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
+                        <option value="">choose your budget</option>
+                        <option value="20k">Rs. 20,000</option>
+                        <option value="30k">Rs. 30,000</option>
+                        <option value="45k">Rs. 45,000</option>
+                        <option value="60k">Rs. 60,000</option>
+                    </select>
+                    <button disabled={!user.annual_budget} onClick={() => setStep(step +1)} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] flex items-center justify-center mx-auto py-2 rounded-l-full rounded-r-full md:w-[55%] w-[90%] font-semibold'>
+                    next<AiOutlineArrowRight/>
+                    </button>
+                    </div>
+                    
+                }
+                {
+                    (step === 14)&&
+                    <div>
+                    <div>
                     <h1 className='md:text-2xl text-xl font-semibold'>Survey partner</h1>
                     <select value={user.survey_partner} onChange={(e) => setUser({...user, 'survey_partner':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-4 border-2 border-gray-500'>
                         <option value="">choose a survey partner</option>
                         <option value="Sanskar">Sanskar</option>
                         <option value="Pranav">Pranav</option>
                     </select>
-                </div>
-                <h1 className='text-center text-md font-thin text-red-600'> {error} </h1>
-                <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] md:text-2xl text-xl px-8 py-2 font-semibold rounded-l-full rounded-r-full md:w-[55%] w-[90%] mx-auto'>
-                    Submit
-                </button>
-                </section>
-                
-            } 
-            {
-               (step === 3)&& 
+                    </div>
+                    <button onClick={handleSubmit} className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] md:text-2xl text-xl px-8 py-2 font-semibold rounded-l-full rounded-r-full md:w-[55%] w-[90%] mx-auto'>
+                        Submit
+                    </button>
+                    </div>
+                }
+                {
+               (step === 15)&& 
                 <div className='min-h-screen flex flex-col gap-4 justify-center'>
                     <h1 className='text-3xl font-semibold'>Thank you for filling our survey!</h1>
                     <h2 className='md:text-2xl text-left text-xl font-semibold'> your coupon code is {user.coupon_code}</h2>
                      <h3>Please take a screenshot or save this code</h3>
                 </div>
-            }
+                }
+                </section>
+
+            } 
+            
         </form>
     </main>
   )
