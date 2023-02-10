@@ -39,21 +39,7 @@ const Survey = () => {
     const [error, setError] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(user.academic_status && user.curriculum_status && user.satisfaction_tutorials && user.difficult_sub){
-            if(user.curriculum_status === 'No'){
-                setUser({...user, 'curriculum_issue' : 'no issue'})
-                setStep(step + 1)
-            } 
-            if(user.curriculum_status === 'Yes'){
-                if(user.curriculum_issue){
-                    setStep(step + 1)
-                } else {
-                    setError("*please justify your issue regarding curriculum")
-                }
-            }
-        } else {
-            setError("*please answer all the questions")
-        }
+        checkIssue()
         console.log('clicked')
         console.log(user.curriculum_status)
         if(user.s_name && user.phone_no && user.school && user.grade && user.board && user.satisfaction_tutorials && user.academic_status && user.difficult_sub && user.curriculum_issue && user.curriculum_status && user.changes && user.library_need && user.batch_student_efficiency && user.survey_partner) {
@@ -100,6 +86,24 @@ const Survey = () => {
             setStep(step + 1)
         } else {
             setError("*enter personal information correctly")
+        }
+    }
+
+    const checkIssue = () => {
+        if(user.academic_status && user.curriculum_status && user.satisfaction_tutorials && user.difficult_sub){
+            if(user.curriculum_status === 'No'){
+                setUser({...user, 'curriculum_issue' : 'no issue'})
+                setStep(step + 1)
+            } 
+            if(user.curriculum_status === 'Yes'){
+                if(user.curriculum_issue){
+                    setStep(step + 1)
+                } else {
+                    setError("*please justify your issue regarding curriculum")
+                }
+            }
+        } else {
+            setError("*please answer all the questions")
         }
     }
 
@@ -247,18 +251,17 @@ const Survey = () => {
                 </div>
 
                 <div className=' my-5'>
-                    <h1 className='md:text-2xl text-xl font-semibold'>Which subject seems the most difficult for you? <span className='font-normal leading-10'>(आपको कौन सा विषय सबसे कठिन लगता है?)</span></h1>
-                    <div className='flex flex-col gap-4 my-3'>
-                        <div className='flex gap-3'>
-                        <input
-                        type='text' 
-                        value={user.difficult_sub}
-                        name='t-sub'
-                        className='border-[1px] border-black p-2 md:w-[50%] rounded-r-full rounded-l-full'
-                        onChange={(e)=> setUser({...user, 'difficult_sub': e.target.value})}
-                        />
-                        </div>
-                    </div>
+                <h1 className='md:text-2xl text-xl font-semibold'>Which subject seems the most difficult for you? <span className='font-normal leading-10'>(आपको कौन सा विषय सबसे कठिन लगता है?)</span></h1>
+                    <select value={user.difficult_sub} onChange={(e) => setUser({...user, 'difficult_sub':e.target.value})} className='md:w-[55%] p-2 rounded-l-full rounded-r-full my-1 border-2 border-gray-500'>
+                        <option value="">choose subject</option>
+                        <option value="physics">Physics</option>
+                        <option value="chemistry">Chemistry</option>
+                        <option value="biology">Biology</option>
+                        <option value="Maths">Maths</option>
+                        <option value="history">History</option>
+                        <option value="geography">Geography</option>
+                        <option value="social science">social science</option>
+                    </select>
                 </div>
                 <div className=' my-5' >
                     <h1 className='md:text-2xl text-xl font-semibold'>Are you facing any issue regarding the curriculum. If yes, justify<span className='font-normal leading-10'>(क्या आप पाठ्यक्रम के संबंध में किसी समस्या का सामना कर रहे हैं। यदि हाँ, तो औचित्य दें)</span></h1>
