@@ -9,7 +9,6 @@ const Navbar = () => {
         </div>
 
         <ul>
-        <Link to='/login'><li><button className='bg-neutral-50 px-5 py-2 rounded-r-full rounded-l-full font-semibold border-2 border-neutral-50 hover:bg-transparent hover:text-neutral-50 transition-all'>Log in</button></li></Link>
         </ul>
       </nav>
     </header>

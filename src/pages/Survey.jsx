@@ -8,7 +8,7 @@ const base = new Airtable({apiKey: import.meta.env.VITE_API_KEY}).base('apphpL7l
 
 const Survey = () => {
     const navigate = useNavigate();
-    const [step, setStep] = useState(1)
+    const [step, setStep] = useState(15)
     const [code, setCode] = useState("")
     const codes = ["GYAAN_FGX", "GYAAN_6Y9", "GYAAN_L2X", "GYAAN_ZZ0", "GYAAN_GRG", "GYAAN_1UJ", "GYAAN_CHV", "GYAAN_JVF", "GYAAN_HP7", "GYAAN_PK4"]
     const [user, setUser] = useState({
