@@ -546,7 +546,7 @@ const Survey = () => {
                 }
                 {
                (step === 15)&& 
-                <div className='min-h-screen flex flex-col gap-4 justify-center md:items-center'>
+                <div className='min-h-[75vh] flex flex-col gap-4 p-4 rounded-md justify-center md:items-center bg-coupon bg-center bg-no-repeat bg-cover'>
                     <h1 className='text-3xl font-semibold'>Thank you for filling our survey!</h1>
                     <h2 className='md:text-2xl text-left text-xl font-semibold'> your coupon code is {user.coupon_code}</h2>
                      <h3>Please take a screenshot or save this code</h3>

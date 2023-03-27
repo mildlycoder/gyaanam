@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'cta-pattern': "url('/assets/cta-mask.png')",
+        'coupon': "url('/assets/coupon-bg.png')"
       },
       fontFamily: {
         manrope: ['"Manrope"', ...defaultTheme.fontFamily.sans]
