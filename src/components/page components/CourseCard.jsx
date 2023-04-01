@@ -13,8 +13,8 @@ const Card = ({course}) => {
     return builder.image(source)
   }
   return (
-    <article className='flex flex-col gap-3 w-[90%] py-6 mx-auto'>
-      <img src={urlFor(course.courseImg).url()} className='w-[100%] hover:scale-105 transition-all'/>
+    <article className='flex flex-col gap-3 w-[90%] py-4 mx-auto'>
+      <img src={urlFor(course.courseImg).url()} className='w-[100%] md:hover:scale-105 transition-all rounded-sm'/>
       <h1 className='text-xl md:text-2xl'>{course.course}</h1>
       <h2 className='text-lg md:text-xl text-[#777777]'>{course.meta}</h2>
       <Link to='/'><span className='underline underline-offset-8 font-semibold flex items-center gap-2 hover:scale-110 transition-all hover:translate-x-8'>Explore page<AiOutlineArrowRight/></span></Link>

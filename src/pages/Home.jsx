@@ -85,7 +85,7 @@ const Home = () => {
             </section>
         </section>
 
-        <section className='grid md:grid-cols-2 md:gap-28 gap-8 grid-cols-1 md:px-[6.25rem] px-[1.5rem] md:pt-[3.5rem] md:pb-[6rem] py-6'>
+        <section className='grid md:grid-cols-2 md:gap-28 gap-8 grid-cols-1 md:px-[6.25rem] px-[1.5rem] md:pt-[3.5rem] md:pb-[6rem] py-14'>
             <section>
                 <h2 className='text-4xl md:text-5xl font-semibold leading-tight flex flex-col'>
                     <span>Investing in education:</span>
@@ -104,12 +104,12 @@ const Home = () => {
 
         {/* courses section */}
         <section>
-            <div className='md:px-[5.25rem] md:py-[3.5rem] px-[1rem] py-6 text-center flex flex-col gap-4'>
+            <div className='md:px-[5.25rem] md:py-[3.5rem] px-[1rem] py-6 text-center flex flex-col gap-2'>
                 <h1 className='text-lg md:text-xl'>Our services</h1>
                 <h2 className='text-4xl md:text-5xl leading-tight'>Courses we offer</h2>
             </div>
 
-            <section className='grid md:grid-cols-4 grid-cols-1 gap-6 md:px-[4rem] md:pb-[6rem] px-[1rem] py-12'>
+            <section className='grid md:grid-cols-4 grid-cols-1 gap-6 md:px-[4rem] md:pb-[6rem] px-[1rem] pb-16'>
                 {
                     courses.map((course, index) => {
                         return(
@@ -121,20 +121,20 @@ const Home = () => {
         </section>
 
         {/* about gyaanam */}
-        <section className='bg-[#0A2640] text-neutral-50 grid md:grid-cols-2 grid-cols-1 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-5'>
-            <section className='md:col-start-2 flex flex-col  px-[1rem] py-5 gap-5'>
+        <section className='bg-[#0A2640] text-neutral-50 grid md:grid-cols-2 grid-cols-1 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
+            <section className='md:col-start-2 flex flex-col  px-[1rem] py-5 gap-2'>
                 <h1 className='text-lg md:text-xl'>Our story</h1>
                 <h2 className='text-4xl md:text-5xl'>Why Gyaanam</h2>
-                <p className='text-lg md:text-xl md:w-[80%] leading-relaxed'>Our platform is designed to be student-friendly, with an easy-to-navigate interface and a user-friendly experience. Our expert educators and tutors provide interactive and engaging sessions that make learning fun and effective. With our comprehensive study materials, personalized assessments, and individualized coaching, we strive to ensure that every student receives the support they need to succeed.</p>
+                <p className='text-lg md:text-xl md:w-[80%] leading-relaxed my-4'>Our platform is designed to be student-friendly, with an easy-to-navigate interface and a user-friendly experience. Our expert educators and tutors provide interactive and engaging sessions that make learning fun and effective. With our comprehensive study materials, personalized assessments, and individualized coaching, we strive to ensure that every student receives the support they need to succeed.</p>
             </section>
         </section>
 
         {/* team */}
         <section className='md:px-[5.25rem] md:p-[6rem]  px-[1.5rem] py-5'>
-            <div className='text-left w-[90%] md:w-[75%] mx-auto flex flex-col gap-5'>
+            <div className='text-left w-[90%] md:w-[75%] mx-auto flex flex-col gap-2 my-6'>
                 <h1 className='text-lg md:text-xl'>Our team</h1>
                 <h2 className='text-4xl md:text-5xl'>The people behind the work</h2>
-                <p className='text-lg md:text-xl leading-relaxed text-[#777777]'>
+                <p className='text-lg md:text-xl leading-relaxed text-[#777777] my-4'>
                 Our team is dedicated to bring quality education to a granular level. We are working towards a goal of bringing a revolution in the EdTech sector. We are post-graduate educators and teachers with experience over five years in the running ed-industry.
                 </p>
             </div>
@@ -152,10 +152,10 @@ const Home = () => {
 
             {/* survey cta */}
             <section className='md:px-[8rem] pb-[4rem] pt-[4rem]'>
-                <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md'>
+                <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md rounded-md'>
                     <h1 className='text-3xl my-5 text-neutral-100 font-thin'>Take survey now!</h1>
                     <Link to='/survey'>
-                    <button className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-lg px-8 py-2 mb-3 font-semibold rounded-l-full rounded-r-full'>
+                    <button className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-lg px-8 py-2 my-3 font-semibold rounded-l-full rounded-r-full'>
                         Start Now
                     </button>
                     </Link>

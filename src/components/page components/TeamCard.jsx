@@ -15,10 +15,10 @@ const TeamCard = ({member}) => {
 
   //console.log(member)
   return (
-    <article className='flex flex-col gap-4 py-6'>
-      <img src={urlFor(member.image).url()} className='w-[90%] md:hover:scale-110 transition-all'/>
+    <article className='flex flex-col gap-2 py-6'>
+      <img src={urlFor(member.image).url()} className='w-[100%] md:hover:scale-110 transition-all'/>
       <h1 className='text-2xl'>{member.name}</h1>
-      <h2 className='text-xl text-[#777777]'>{member.position}</h2> 
+      <h2 className='text-lg text-[#777777]'>{member.position}</h2> 
     </article>
   )
 }
