@@ -16,7 +16,7 @@ const Navbar = () => {
 
         <ul className='flex items-baseline gap-5'>
           <li className=' text-xl hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
-              About
+              About us
           </li>
           
           <li className=''>
@@ -58,7 +58,7 @@ const Navbar = () => {
         {/* dropdown menu */}
           <ul className={`md:flex flex-col gap-5 justify-center md:items-center ${isOpen ? 'block' : 'hidden'} md:mt-0`}>
             <li className=' text-lg my-4 text-center hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
-                About
+                About us
             </li>
 
             <li className=''>
