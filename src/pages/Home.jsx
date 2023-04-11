@@ -98,7 +98,7 @@ const Home = () => {
                 Join us today and experience the power of a world-class education. Let us help you unlock your potential and achieve your academic goals.
                 </p>
 
-                <Link to='/register'><button className='px-11 py-3 rounded-r-full rounded-l-full font-semibold border-2 border-[#0A2640] hover:bg-[#0A2640] hover:text-white hover:scale-110 transition-all'>Register</button></Link>
+                <Link to='/register'><button className='px-11 py-3 rounded-r-full rounded-l-full font-semibold border-2 border-[#0A2640] hover:bg-[#0A2640] hover:text-white hover:scale-110 transition-all'>Enroll Now!</button></Link>
             </section>
         </section>
 
@@ -109,7 +109,7 @@ const Home = () => {
                 <h2 className='text-4xl md:text-5xl leading-tight'>Courses we offer</h2>
             </div>
 
-            <section className='grid md:grid-cols-4 grid-cols-1 gap-6 md:px-[4rem] md:pb-[6rem] px-[1rem] pb-16'>
+            <section className='grid grid-cols-2 md:grid-cols-4 gap-6 md:px-[4rem] md:pb-[6rem] px-[1rem] pb-16'>
                 {
                     courses.map((course, index) => {
                         return(
