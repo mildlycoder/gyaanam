@@ -11,7 +11,7 @@ const Modal = () => {
 
   return (
     <section className={modal ? 'h-[100vh] backdrop-blur-sm  w-[100%] z-10 fixed' : 'hidden'}>
-      <section className='text-4xl w-[50%] h-[70vh] mx-auto my-[6rem] p-5 bg-[#0A2640] border-2 border-[#65E4A3] text-white rounded-md'>
+      <section className='text-4xl w-[90%] md:w-[50%] h-[70vh] mx-auto my-[6rem] p-5 bg-[#0A2640] border-2 border-[#65E4A3] text-white rounded-md'>
         <nav className='block  text-[#65E4A3] hover:text-[#65E4A3] focus:text-[#65E4A3] focus:outline-none'>
          <button onClick={() => setModal(false)}>
           <svg className='h-6 w-6 fill-current' viewBox='0 0 24 24'>
@@ -24,9 +24,9 @@ const Modal = () => {
          </button>
         </nav>
 
-        <section className='flex flex-col gap-6 my-[6rem] text-center w-[75%] mx-auto'>
-          <h1>Join us today and save 20% on your yearly subscription</h1>
-          <button onClick={handleNavigate} className='px-10 w-[40%] mx-auto py-2 rounded-r-full rounded-l-full border-2 bg-[#65E4A3] border-[#65E4A3] hover:bg-[#0A2640] text-[#0A2640] hover:text-[#65E4A3] hover:scale-110 transition-all text-xl md:text-2xl'>Enroll Now!</button>
+        <section className='flex flex-col gap-6 my-[4rem] md:my-[6rem] text-center w-[75%] mx-auto'>
+          <h1 className='text-2xl md:text-3xl'>Join us today and save 20% on your yearly subscription</h1>
+          <button onClick={handleNavigate} className='px-10 md:w-[40%] mx-auto py-2 rounded-r-full rounded-l-full border-2 bg-[#65E4A3] border-[#65E4A3] hover:bg-[#0A2640] text-[#0A2640] hover:text-[#65E4A3] hover:scale-110 transition-all text-xl md:text-2xl'>Enroll Now!</button>
         </section>
       </section>
     </section>
