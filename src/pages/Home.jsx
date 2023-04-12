@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import {Loader, Card, TeamCard} from '../components/page components/index'
+import {Loader, Card, TeamCard, CustomButtonGroup, TestimonialCard} from '../components/page components/index'
 import {FiFeather} from 'react-icons/fi'
 import {AiOutlineEye} from 'react-icons/ai'
 import {BiSun} from 'react-icons/bi'
@@ -10,6 +10,7 @@ import {BsEye} from 'react-icons/bs'
 import {GiBookStorm} from 'react-icons/gi'
 import { Link } from 'react-router-dom'
 import sanityClient  from '../../services/client'
+import { testimonials } from '../../constants/testimonials'
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -54,6 +55,26 @@ const Home = () => {
         tablet: {
           breakpoint: { max: 1024, min: 464 },
           items: 1
+        },
+        mobile: {
+          breakpoint: { max: 464, min: 0 },
+          items: 1
+        }
+      };
+
+      const responsiveTestimonial = {
+        superLargeDesktop: {
+          // the naming can be any, depends on you.
+          breakpoint: { max: 4000, min: 3000 },
+          items: 3
+        },
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 3
+        },
+        tablet: {
+          breakpoint: { max: 1024, min: 464 },
+          items: 3
         },
         mobile: {
           breakpoint: { max: 464, min: 0 },
@@ -129,6 +150,8 @@ const Home = () => {
             </section>
         </section>
 
+
+
         {/* team */}
         <section className='md:px-[5.25rem] md:p-[6rem]  px-[1.5rem] py-5'>
             <div className='text-left w-[90%] md:w-[75%] mx-auto flex flex-col gap-2 my-6'>
@@ -140,7 +163,7 @@ const Home = () => {
             </div>
 
 
-            <section className='grid md:grid-cols-4 py-5 grid-cols-1 gap-6 md:px-[4rem] md:pb-[4rem] md:pt-[6rem] px-[1rem]'>
+            <section className='grid md:grid-cols-4 py-5 grid-cols-1 gap-6 md:px-[4rem] md:pt-[6rem] px-[1rem]'>
                 {
                     team.map((member, index) => {
                         return(
@@ -149,9 +172,56 @@ const Home = () => {
                     })
                 }
             </section>
+        </section>
+        
+        {/* testimonial section */}
+        <section className='bg-[#0A2640] text-neutral-50 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
 
-            {/* survey cta */}
-            <section className='md:px-[8rem] pb-[4rem] pt-[4rem]'>
+                <div className='flex flex-col-reverse gap-6'>
+                <Carousel
+                    additionalTransfrom={0}
+                    arrows={false}
+                    autoPlaySpeed={3000}
+                    centerMode={false}
+                    className="w-[97%] mx-auto"
+                    containerClass="container-padding-bottom"
+                    customButtonGroup={<CustomButtonGroup />}
+                    dotListClass=""
+                    draggable
+                    focusOnSelect={false}
+                    infinite={false}
+                    itemClass=""
+                    keyBoardControl
+                    minimumTouchDrag={80}
+                    pauseOnHover
+                    renderArrowsWhenDisabled={false}
+                    renderButtonGroupOutside={true}
+                    renderDotsOutside={false}
+                    responsive={responsiveTestimonial}
+                    rewind={false}
+                    rewindWithAnimation={false}
+                    rtl={false}
+                    shouldResetAutoplay
+                    showDots={false}
+                    sliderClass=""
+                    slidesToSlide={1}
+                    swipeable
+                >
+                    {
+                        testimonials.map((testimonial, index) => {
+                            return(
+                                <TestimonialCard key={index} testimonial={testimonial}/>
+                            )
+                        })
+                    }
+                </Carousel>
+                </div>
+        </section>
+
+        {/* survey cta */}
+        <section className='md:px-[5.25rem]  px-[1.5rem] my-[5rem]'>
+            
+            <section className='md:px-[8rem] pb-[4rem] pt-[rem]'>
                 <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md rounded-md'>
                     <h1 className='text-3xl my-5 text-neutral-100 font-thin'>Take survey now!</h1>
                     <Link to='/survey'>
