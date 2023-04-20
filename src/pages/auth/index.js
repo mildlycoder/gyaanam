@@ -1,6 +1,8 @@
-import Register from "./Register"
+import Register from "./register"
 import Login from "./Login"
+import Welcome from "./Welcome"
 export{
     Register,
-    Login
+    Login,
+    Welcome
 }

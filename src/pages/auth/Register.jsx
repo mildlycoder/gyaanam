@@ -2,6 +2,7 @@ import { async } from '@firebase/util'
 import React , {useState, useEffect} from 'react'
 import { createUserWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
 import {auth} from '../../firebase-config'
+import { useNavigate } from 'react-router-dom'
 import Airtable from 'airtable'
 
 const base = new Airtable({apiKey: import.meta.env.VITE_API_KEY}).base('apphpL7lHo7AHeRV9')
@@ -16,13 +17,14 @@ const Register = () => {
         grade: '',
         board: ''
     })
-
+    const navigate = useNavigate()
     useEffect(() => {
         onAuthStateChanged(auth, (currentUser) => {
             if(currentUser?.email){
                 setLoggedIn(true)
             }
             setCurrentSession(currentUser)
+            console.log(currentUser)
         })    
       }, []) 
   
@@ -30,7 +32,8 @@ const Register = () => {
     const [currentSession, setCurrentSession] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [error, setError] = useState('')
-    console.log(formValues)
+
+
     const registerUser = async (e) => {
         e.preventDefault()
         try {
@@ -59,6 +62,9 @@ const Register = () => {
                         console.log(user)
                     });
                 });
+
+                // Redirect to the welcome page
+                navigate('/welcome')
             } else {
                 setError('*please enter all the fields')
             }

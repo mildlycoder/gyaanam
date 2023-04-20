@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home, Survey } from './pages'
 import { Navbar, Footer } from './components/layout components'
-import { Register, Login } from './pages/auth'
+import { Register, Login, Welcome } from './pages/auth'
 //import { CourseMain } from './pages/courses'
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
           <Route path='/survey' element={<Survey/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/welcome' element={<Welcome/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
