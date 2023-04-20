@@ -1,11 +1,59 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import {IoIosArrowForward} from 'react-icons/io'
+import {MdKeyboardArrowDown} from 'react-icons/md'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isBreadcrumbOpen, setIsBreadcrumbOpen] = useState(false)
+  const [isCourseOpen, setIsCourseOpen] = useState(true)
+
+  const icse = [
+    'Class 7',
+    'Class 8',
+    'Class 9',
+    'Class 10',
+    'Class 11',
+    'Class 12'
+  ]
+
+  const cbse = [
+    'Class 7',
+    'Class 8',
+    'Class 9',
+    'Class 10',
+    'Class 11',
+    'Class 12'
+  ]
+
+  const maharastra = [
+    'Class 7',
+    'Class 8',
+    'Class 9',
+    'Class 10',
+    'Class 11',
+    'Class 12'
+  ]
+
+  const competitive = [
+    'NEET 11th',
+    'NEET 12th',
+    'JEE 11th',
+    'JEE 12th'
+  ]
+
+  const [course, setCourse] = useState('icse')
+
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
   }
+
+  const toggleBreadcrumb = (type) => {
+    setIsBreadcrumbOpen(!isBreadcrumbOpen)
+  }
+
+
 
   return (
     <header className='bg-[#0A2640]'>
@@ -15,6 +63,76 @@ const Navbar = () => {
         </div>
 
         <ul className='flex items-baseline gap-5'>
+          <div className='relative'>
+            <li className=' text-xl flex flex-col hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
+                <button onClick={toggleBreadcrumb} className='flex items-center'>courses<MdKeyboardArrowDown size={'2rem'}/></button>
+            </li>
+            {
+                isBreadcrumbOpen && 
+                <div className='absolute w-max z-20 top-14 rounded text-[#65E4A3] text-lg flex'>
+                  <ul className='bg-[#0A2640] p-5 rounded-l-md'>
+                    <li id='icse' className='cursor-pointer hover:scale-110 transition-all flex items-center' onClick={() => setCourse('icse')}>ICSE<IoIosArrowForward/></li>
+                    <li id='cbse' className='cursor-pointer hover:scale-110 transition-all flex items-center' onClick={() => setCourse('cbse')}>CBSE<IoIosArrowForward/></li>
+                    <li id='maharastra' className='cursor-pointer hover:scale-110 transition-all flex items-center' onClick={() => setCourse('maharastra')}>Maharastra<IoIosArrowForward/></li>
+                    <li id='competitive' className='cursor-pointer hover:scale-110 transition-all flex items-center' onClick={() => setCourse('competitive')}>NEET/JEE<IoIosArrowForward/></li>
+                  </ul>
+
+                  <ul className=''>
+                    {
+                      isCourseOpen &&
+                      <ul className='flex flex-col bg-teal-700 p-5 rounded-r-md'>
+                        {
+                          course === 'icse' && 
+                          <div>
+                            <h1 className='font-semibold'>courses for ICSE</h1>
+                            {
+                              icse.map((item, index) => {
+                                return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
+                              })
+                            }
+                          </div>
+                          
+                        }
+                        {
+                          course === 'cbse' && 
+                          <div>
+                          <h1 className='font-semibold'>courses for CBSE</h1>
+                          {
+                            icse.map((item, index) => {
+                              return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
+                            })
+                          }
+                          </div>
+                        }
+                        {
+                          course === 'maharastra' && 
+                          <div>
+                          <h1 className='font-semibold'>courses for Maharastra board</h1>
+                          {
+                            icse.map((item, index) => {
+                              return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
+                            })
+                          }
+                          </div>
+                        }
+                        {
+                          course === 'competitive' && 
+                          <div>
+                          <h1 className='font-semibold'>courses for NEET/JEE</h1>
+                          {
+                            icse.map((item, index) => {
+                              return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
+                            })
+                          }
+                        </div>
+                        }
+                      </ul>
+                    }
+                  </ul>
+                </div>
+              }
+          </div>
+
           <li className=' text-xl hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
               About us
           </li>

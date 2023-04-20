@@ -10,7 +10,7 @@ const Modal = () => {
   }
 
   return (
-    <section className={modal ? 'h-[100vh] backdrop-blur-sm  w-[100%] z-10 fixed' : 'hidden'}>
+    <section className={modal ? 'h-[100vh] backdrop-blur-sm  w-[100%] z-20 fixed' : 'hidden'}>
       <section className='text-4xl w-[90%] md:w-[50%] h-[70vh] mx-auto my-[6rem] p-5 bg-[#0A2640] border-2 border-[#65E4A3] text-white rounded-md'>
         <nav className='block  text-[#65E4A3] hover:text-[#65E4A3] focus:text-[#65E4A3] focus:outline-none'>
          <button onClick={() => setModal(false)}>

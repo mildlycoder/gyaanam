@@ -88,7 +88,7 @@ const Home = () => {
         {/* hero section */}
         <section className='md:grid md:grid-cols-2 md:gap-28 gap-8 grid-cols-1 md:pb-[6rem]'>
 
-        <section className='col-span-2'>
+        <section className='col-span-2 z-[-3]'>
             <Carousel
             infinite={true}
             transitionDuration={500}
