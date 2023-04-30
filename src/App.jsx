@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home, Survey } from './pages'
-import { Navbar, Footer } from './components/layout components'
+import { Navbar, Footer, Modal } from './components/layout components'
 import { Register, Login, Welcome } from './pages/auth'
 //import { CourseMain } from './pages/courses'
 
@@ -9,6 +9,7 @@ const App = () => {
   return (
     <div className='font-manrope'>
       <BrowserRouter>
+        <Modal/>
         <Navbar/>
         <Routes>
           <Route path='/' element={<Home/>}/>

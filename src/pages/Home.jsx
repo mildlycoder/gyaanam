@@ -115,7 +115,7 @@ const Home = () => {
             </section>
 
             <section className='flex flex-col gap-6'>
-                <p className='w-[90%] md:w-[80%] text-base'>
+                <p className='w-[90%] md:w-[95%] text-xl'>
                 Join us today and experience the power of a world-class education. Let us help you unlock your potential and achieve your academic goals.
                 </p>
 
@@ -126,7 +126,6 @@ const Home = () => {
         {/* courses section */}
         <section>
             <div className='md:px-[5.25rem] md:py-[3.5rem] px-[1rem] py-6 text-center flex flex-col gap-2'>
-                <h1 className='text-lg md:text-xl'>Our services</h1>
                 <h2 className='text-4xl md:text-5xl leading-tight'>Courses we offer</h2>
             </div>
 
@@ -144,7 +143,6 @@ const Home = () => {
         {/* about gyaanam */}
         <section className='bg-[#0A2640] text-neutral-50 grid md:grid-cols-2 grid-cols-1 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
             <section className='md:col-start-2 flex flex-col  px-[1rem] py-5 gap-2'>
-                <h1 className='text-lg md:text-xl'>Our story</h1>
                 <h2 className='text-4xl md:text-5xl'>Why Gyaanam</h2>
                 <p className='text-lg md:text-xl md:w-[80%] leading-relaxed my-4'>Our platform is designed to be student-friendly, with an easy-to-navigate interface and a user-friendly experience. Our expert educators and tutors provide interactive and engaging sessions that make learning fun and effective. With our comprehensive study materials, personalized assessments, and individualized coaching, we strive to ensure that every student receives the support they need to succeed.</p>
             </section>
@@ -153,7 +151,7 @@ const Home = () => {
 
 
         {/* team */}
-        <section className='md:px-[5.25rem] md:p-[6rem]  px-[1.5rem] py-5'>
+        {/* <section className='md:px-[5.25rem] md:p-[6rem]  px-[1.5rem] py-5'>
             <div className='text-left w-[90%] md:w-[75%] mx-auto flex flex-col gap-2 my-6'>
                 <h1 className='text-lg md:text-xl'>Our team</h1>
                 <h2 className='text-4xl md:text-5xl'>The people behind the work</h2>
@@ -172,7 +170,7 @@ const Home = () => {
                     })
                 }
             </section>
-        </section>
+        </section> */}
         
         {/* testimonial section */}
         <section className='bg-[#0A2640] text-neutral-50 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
