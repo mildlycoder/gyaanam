@@ -5,7 +5,7 @@ import {MdKeyboardArrowDown} from 'react-icons/md'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isBreadcrumbOpen, setIsBreadcrumbOpen] = useState(false)
-  const [isCourseOpen, setIsCourseOpen] = useState(true)
+  const [isCourseOpen, setIsCourseOpen] = useState(false)
 
   const icse = [
     'Class 7',
@@ -57,24 +57,44 @@ const Navbar = () => {
 
   return (
     <header className='bg-[#0A2640]'>
-      <nav className='hidden md:flex items-center md:mx-[6.25rem] md:py-[2rem] mx-[1.25rem] py-5'>
+      <nav className='hidden md:flex items-center md:mx-[6.25rem] md:py-[1rem] mx-[1.25rem] py-5'>
         <div className='flex items-center basis-1/6'>
           <img src='/assets/GET-logo-8.png' className='w-[100%]'/>
         </div>
 
         <ul className='flex items-baseline gap-5 w-full mx-8'>
           <div className='relative'>
-            <li className=' text-xl flex flex-col hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
-                <button onMouseEnter={toggleBreadcrumb}  className='flex items-center'>courses<MdKeyboardArrowDown size={'2rem'}/></button>
+            <li className=' text-lg flex flex-col hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
+                <button onMouseEnter={toggleBreadcrumb}  className='flex items-center'>Courses<MdKeyboardArrowDown size={'2rem'}/></button>
             </li>
             {
                 isBreadcrumbOpen && 
-                <div onMouseLeave={toggleBreadcrumb} className='absolute w-max z-20 top-14 rounded text-[#65E4A3] text-lg flex'>
+                <div onMouseLeave={toggleBreadcrumb} className='absolute w-max z-20 top-11 rounded text-[#65E4A3] text-lg flex'>
                   <ul className='bg-[#0A2640] rounded-l-md flex flex-col py-5'>
-                    <li id='icse' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => setCourse('icse')}>ICSE<IoIosArrowForward/></li>
-                    <li id='cbse' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => setCourse('cbse')}>CBSE<IoIosArrowForward/></li>
-                    <li id='maharastra' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => setCourse('maharastra')}>Maharastra<IoIosArrowForward/></li>
-                    <li id='competitive' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => setCourse('competitive')}>NEET/JEE<IoIosArrowForward/></li>
+                    <li id='icse' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
+                      setCourse('icse')
+                      setIsCourseOpen(true)
+                    }}
+                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    >ICSE<IoIosArrowForward/></li>
+                    <li id='cbse' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
+                      setCourse('cbse')
+                      setIsCourseOpen(true)
+                    }}
+                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    >CBSE<IoIosArrowForward/></li>
+                    <li id='maharastra' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
+                      setCourse('maharastra')
+                      setIsCourseOpen(true)
+                    }}
+                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    >Maharastra<IoIosArrowForward/></li>
+                    <li id='competitive' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
+                      setCourse('competitive')
+                      setIsCourseOpen(true)
+                    }}
+                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    >NEET/JEE<IoIosArrowForward/></li>
                   </ul>
 
                   <ul className=''>
@@ -133,19 +153,20 @@ const Navbar = () => {
               }
           </div>
 
-          <li className=' text-xl hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
+          <li className=' text-lg hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
               About us
           </li>
 
-          <li className=' text-xl hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
+          <li className=' text-lg hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
               Test series
           </li>
 
-          <li className=' text-xl hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
+          <li className=' text-lg hover:underline cursor-pointer text-[#65E4A3] hover:scale-110 transition-all'>
               Insights
           </li>
           
-          <li className='ml-auto'>
+          <li className='ml-auto flex gap-5'>   
+              <Link to='/register'><button className='px-10 py-2 rounded-r-full rounded-l-full font-semibold border-2  text-white hover:scale-110 transition-all'>Register</button></Link>
               <Link to='/login'><button className='px-10 py-2 rounded-r-full rounded-l-full font-semibold border-2 bg-[#65E4A3] border-[#65E4A3] hover:bg-[#0A2640] hover:text-[#65E4A3] hover:scale-110 transition-all'>Log in</button></Link>
           </li>
         </ul>
