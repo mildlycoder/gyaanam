@@ -14,7 +14,7 @@ export const testimonials = [
     {
         id: 3,
         name: 'Priya Dama, ICSE 10th-85%',
-        desc: 'This place has helped me with great understanding. Their guidance is very useful in choosing best career suiting the students. It is a new new tution which will come out to be the best',
+        desc: 'This place has helped me with great understanding. Their guidance is very useful in choosing best career suiting the students. It is a new tution which will come out to be the best',
         image: '/assets/testimonial-3.png'
     },
     {
