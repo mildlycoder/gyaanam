@@ -75,25 +75,25 @@ const Navbar = () => {
                       setCourse('icse')
                       setIsCourseOpen(true)
                     }}
-                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    onMouseLeave={() => {setIsCourseOpen(true)}}
                     >ICSE<IoIosArrowForward/></li>
                     <li id='cbse' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
                       setCourse('cbse')
                       setIsCourseOpen(true)
                     }}
-                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    onMouseLeave={() => {setIsCourseOpen(true)}}
                     >CBSE<IoIosArrowForward/></li>
                     <li id='maharastra' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
                       setCourse('maharastra')
                       setIsCourseOpen(true)
                     }}
-                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    onMouseLeave={() => {setIsCourseOpen(true)}}
                     >Maharastra<IoIosArrowForward/></li>
                     <li id='competitive' className='cursor-pointer px-5 py-1 hover:bg-[#12416c] hover:text-xl transition-all flex items-center' onMouseEnter={() => {
                       setCourse('competitive')
                       setIsCourseOpen(true)
                     }}
-                    onMouseLeave={() => {setIsCourseOpen(false)}}
+                    onMouseLeave={() => {setIsCourseOpen(true)}}
                     >NEET/JEE<IoIosArrowForward/></li>
                   </ul>
 
@@ -140,7 +140,7 @@ const Navbar = () => {
                           <div>
                           <h1 className='font-semibold'>courses for NEET/JEE</h1>
                           {
-                            icse.map((item, index) => {
+                            competitive.map((item, index) => {
                               return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
                             })
                           }

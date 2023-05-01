@@ -181,7 +181,7 @@ const Home = () => {
                     arrows={false}
                     autoPlaySpeed={3000}
                     centerMode={false}
-                    className="w-[97%] mx-auto"
+                    className="w-[97%] mx-auto pt-32"
                     containerClass="container-padding-bottom"
                     customButtonGroup={<CustomButtonGroup />}
                     dotListClass=""
