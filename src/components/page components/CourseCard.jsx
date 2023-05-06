@@ -16,9 +16,9 @@ const Card = ({course}) => {
   }
   return (
     <article className='flex flex-col w-[90%] md:w-[90%] mx-auto shadow-[2px_2px_2px_2px_rgba(0,0,0,0.10)] md:shadow-[5px_5px_5px_5px_rgba(0,0,0,0.10)] rounded-md p-5 md:p-10'>
-      <div className='flex ml-[-4rem] mt-[-3rem]'>
-        <div className='basis-1/12 h-[2.5rem] skew-y-12 mr-[-1.5rem] mt-[.9rem] -z-10 bg-red-600'></div>
-        <h1 className='basis-8/12 text-md md:text-md my-2.5 bg-red-500 p-2 text-white'>{course.course}</h1>
+      <div className='flex ml-[-2rem] mt-[-1.5rem] md:ml-[-4rem] md:mt-[-3rem]'>
+        <div className='basis-1/12 h-[2.3rem] skew-y-12 mr-[-0.70rem] mt-[0.8rem] md:mr-[-1.5rem] md:mt-[.9rem] -z-10 bg-red-600'></div>
+        <h1 className=' text-sm md:text-md my-2.5 bg-red-500 p-2 text-white'>{course.course}</h1>
       </div>
       
       <div className='h-[50%] overflow-y-hidden'>
