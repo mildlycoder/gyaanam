@@ -104,7 +104,6 @@ const Navbar = () => {
                         {
                           course === 'icse' && 
                           <div>
-                            <h1 className='font-semibold'>courses for ICSE</h1>
                             {
                               icse.map((item, index) => {
                                 return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
@@ -116,7 +115,6 @@ const Navbar = () => {
                         {
                           course === 'cbse' && 
                           <div>
-                          <h1 className='font-semibold'>courses for CBSE</h1>
                           {
                             icse.map((item, index) => {
                               return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
@@ -127,7 +125,6 @@ const Navbar = () => {
                         {
                           course === 'maharastra' && 
                           <div>
-                          <h1 className='font-semibold'>courses for Maharastra board</h1>
                           {
                             icse.map((item, index) => {
                               return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
@@ -137,8 +134,7 @@ const Navbar = () => {
                         }
                         {
                           course === 'competitive' && 
-                          <div>
-                          <h1 className='font-semibold'>courses for NEET/JEE</h1>
+                          <div className='h-[15rem]'>
                           {
                             competitive.map((item, index) => {
                               return <li key={index} className='hover:underline cursor-pointer'>{item}</li>
