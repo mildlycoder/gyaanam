@@ -142,6 +142,9 @@ const Home = () => {
 
         {/* about gyaanam */}
         <section className='bg-[#0A2640] text-neutral-50 grid md:grid-cols-2 grid-cols-1 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
+            <section>
+                <img src="/assets/grp-3.svg" className='h-[90%] mx-auto hidden md:block' alt="" />
+            </section>
             <section className='md:col-start-2 flex flex-col  px-[1rem] py-5 gap-2'>
                 <h2 className='text-4xl md:text-5xl'>Why Gyaanam</h2>
                 <p className='text-lg md:text-xl md:w-[80%] leading-relaxed my-4'>Our platform is designed to be student-friendly, with an easy-to-navigate interface and a user-friendly experience. Our expert educators and tutors provide interactive and engaging sessions that make learning fun and effective. With our comprehensive study materials, personalized assessments, and individualized coaching, we strive to ensure that every student receives the support they need to succeed.</p>
@@ -173,35 +176,18 @@ const Home = () => {
         </section> */}
         
         {/* testimonial section */}
-        <section className='bg-[#0A2640] text-neutral-50 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
-
+        <section className='bg-[#0A2640] text-neutral-50 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10 text-center'>
+                <h1 className='text-3xl mx-auto text-neutral-100 font-thin'>Hear what our students have to say about us</h1>
                 <div className='flex flex-col-reverse gap-6'>
                 <Carousel
                     additionalTransfrom={0}
-                    arrows={false}
                     autoPlaySpeed={3000}
                     centerMode={false}
-                    className="w-[97%] mx-auto pt-32"
+                    className="w-[97%] mx-auto pt-32 pb-20"
                     containerClass="container-padding-bottom"
+                    arrows={false} 
                     customButtonGroup={<CustomButtonGroup />}
-                    dotListClass=""
-                    draggable
-                    focusOnSelect={false}
-                    infinite={false}
-                    itemClass=""
-                    keyBoardControl
-                    minimumTouchDrag={80}
-                    pauseOnHover
-                    renderArrowsWhenDisabled={false}
-                    renderButtonGroupOutside={true}
-                    renderDotsOutside={false}
                     responsive={responsiveTestimonial}
-                    rewind={false}
-                    rewindWithAnimation={false}
-                    rtl={false}
-                    shouldResetAutoplay
-                    showDots={false}
-                    sliderClass=""
                     slidesToSlide={1}
                     swipeable
                 >

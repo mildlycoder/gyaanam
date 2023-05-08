@@ -25,10 +25,10 @@ const Card = ({course}) => {
         <img src={urlFor(course.courseImg).url()} className='w-[85%] md:hover:scale-90 transition-all rounded-sm'/>
       </div>
       
-      <div className='mt-[1.5rem]'>
+      <div className='mt-[1.5rem] flex flex-col gap-3'>
         <h2 className='text-lg hidden md:block md:text-xl text-[#777777]'>{course.meta}</h2>
-        <h2 className='text-md hidden md:flex items-center gap-2 md:text-xl text-[#777777] my-2.5'><BiTime/>12 months</h2>
-        <h2 className='text-md hidden md:flex items-start gap-2 md:text-xl text-[#777777] my-2.5'><SlGraduation className='basis-1/6 mt-2'/>Special offer for 1st 10 ten students</h2>
+        <h2 className='text-md hidden md:flex items-center gap-2 md:text-xl text-[#777777]'><BiTime/>12 months</h2>
+        <h2 className='text-md hidden md:flex items-start gap-2 md:text-xl text-[#777777]'><SlGraduation className='basis-1/6 mt-2'/>Special offer for 1st 10 ten students</h2>
       </div>
       <Link to='/'><span className='underline underline-offset-8 font-semibold flex items-center gap-2 hover:scale-110 transition-all md:hover:translate-x-8 my-2.5 text-md md:text-lg'>Explore<AiOutlineArrowRight/></span></Link>
     </article>
