@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import {Loader, Card, TeamCard, CustomButtonGroup, TestimonialCard} from '../components/page components/index'
+import Airtable from 'airtable'
 import {FiFeather} from 'react-icons/fi'
 import {AiOutlineEye} from 'react-icons/ai'
 import {BiSun} from 'react-icons/bi'
@@ -14,6 +15,11 @@ import { testimonials } from '../../constants/testimonials'
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const base = new Airtable({apiKey: import.meta.env.VITE_API_KEY}).base('apphpL7lHo7AHeRV9')
 
 const Home = () => {
     const [courses, setCourses] = useState([])
@@ -82,9 +88,40 @@ const Home = () => {
         }
       };
 
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        if (email) {
+          base('survey').create([
+            {
+              fields: {
+                email: email,
+              },
+            },
+          ], function(err, records) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            records.forEach(function (record) {
+              console.log(record.getId());
+              console.log(email);
+            });
+            
+            toast('Email successfully submitted');
+          });
+        } else {
+          setError('*please enter your email');
+        }
+    }      
+
+
     return (
     <main className=''>
-        
+        <ToastContainer />
         {/* hero section */}
         <section className='md:grid md:grid-cols-2 md:gap-28 gap-8 grid-cols-1 md:pb-[6rem]'>
 
@@ -140,14 +177,62 @@ const Home = () => {
             </section>
         </section>
 
-        {/* about gyaanam */}
-        <section className='bg-[#0A2640] text-neutral-50 grid md:grid-cols-2 grid-cols-1 md:px-[5.25rem] md:p-[6rem] px-[1rem] py-10'>
-            <section>
-                <img src="/assets/grp-3.svg" className='h-[90%] mx-auto hidden md:block' alt="" />
+        {/*Plasn section*/}
+        <section className='grid grid-cols-1 md:grid-cols-2 gap-10 md:px-[4rem] md:pb-[6rem] px-[1rem] pb-16 w-[85%] mx-auto'>
+            <section className='flex items-center justify-center'>
+                <img src="/assets/basic.jpeg" alt="" srcset="" className=''/>
             </section>
-            <section className='md:col-start-2 flex flex-col  px-[1rem] py-5 gap-2'>
-                <h2 className='text-4xl md:text-5xl'>Why Gyaanam</h2>
-                <p className='text-lg md:text-xl md:w-[80%] leading-relaxed my-4'>Our platform is designed to be student-friendly, with an easy-to-navigate interface and a user-friendly experience. Our expert educators and tutors provide interactive and engaging sessions that make learning fun and effective. With our comprehensive study materials, personalized assessments, and individualized coaching, we strive to ensure that every student receives the support they need to succeed.</p>
+            <section className='flex flex-col gap-5 justify-center'>
+                <h1 className='text-4xl md:text-4xl leading-tight'>Base plan</h1>
+                <ul className='flex flex-col gap-3'>
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Chapter wise explanation</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Test twice a week (Objective + Subjective)</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Doubt session twice a week</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Batch of 15 students</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> No Picnic </li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Access to only practical demonstrations</li>
+                </ul>
+
+                <Link to='/register'><button className='px-10 py-2 rounded-r-full rounded-l-full font-semibold border-2 bg-[#0A2640] text-white hover:scale-110 transition-all'>start</button></Link>
+            </section>
+            
+            <section className='flex flex-col gap-5 justify-center'>
+                <h1 className='text-4xl md:text-4xl leading-tight'>Premium plan</h1>
+                <ul className='flex flex-col gap-3'>
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Customizable test series</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Unlimited doubt sessions</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Unlimited Gyaanam Library access</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Batch of 5 - 8 students</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Picnic sponsored by Gyaanam every year</li>
+
+                    <li className='flex items-center text-lg gap-2'><img src="/assets/tick.svg" alt="" className='h-[1.5rem]'/> Hands on practical experiments</li>
+                </ul>
+
+                <Link to='/register'><button className='px-10 py-2 rounded-r-full rounded-l-full font-semibold border-2 bg-[#0A2640] text-white hover:scale-110 transition-all'>start</button></Link>
+            </section>
+            <section>
+                <img src="/assets/premium.jpeg" alt="" srcset="" className='w-[120%]'/>
+            </section>
+            
+        </section>
+
+        {/* about gyaanam */}
+        <section className='bg-[#0A2640] text-neutral-50 md:px-[5.25rem] md:p-[6rem]  px-[1.5rem] py-5'>
+            
+            <section className=''>
+                <h2 className='text-4xl md:text-5xl text-center my-5 mb-[5rem]'>Why Gyaanam?</h2>
+                <section>
+                    <img src="/assets/grp-3.svg" className='mx-auto' alt="" />
+                </section>
             </section>
         </section>
 
@@ -203,19 +288,33 @@ const Home = () => {
         </section>
 
         {/* survey cta */}
-        <section className='md:px-[5.25rem]  px-[1.5rem] my-[5rem]'>
-            
+        <section className='md:px-[5.25rem] px-[1.5rem] my-[5rem]'>
             <section className='md:px-[8rem] pb-[4rem] pt-[rem]'>
-                <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md rounded-md'>
-                    <h1 className='text-3xl my-5 text-neutral-100 font-thin'>Take survey now!</h1>
-                    <Link to='/survey'>
-                    <button className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-lg px-8 py-2 my-3 font-semibold rounded-l-full rounded-r-full'>
-                        Start Now
+            <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md rounded-md'>
+                <h1 className='text-3xl my-5 text-neutral-100 font-thin'>Sign up for our newsletter and be part of our education society</h1>
+                <form onSubmit={handleSubmit}>
+                <div className='flex justify-center items-center'>
+                    <input
+                    type='email'
+                    className='border border-[#69E6A6] px-4 h-[3rem] text-[#0A2640] text-lg rounded-l-full focus:outline-none focus:ring-[#69E6A6] focus:border-[#69E6A6]'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder='Enter your email'
+                    required
+                    />
+                    <button
+                    type='submit'
+                    className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-lg px-8 py-2 my-3 h-[3rem] font-semibold rounded-r-full'
+                    >
+                    Sign Up
                     </button>
-                    </Link>
-                </article>
+                </div>
+                </form>
+                {error && <p className='text-red-500'>{error}</p>}
+            </article>
             </section>
         </section>
+
 
 
     </main>
