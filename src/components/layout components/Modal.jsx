@@ -76,7 +76,7 @@ const Modal = () => {
                 />
                 <button
                   type='submit'
-                  className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-sm px-4 py-1 font-semibold rounded-r-full'
+                  className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-sm px-2 md:px-4 py-1  font-semibold rounded-r-full'
                 >
                   Sign Up
                 </button>
