@@ -293,22 +293,22 @@ const Home = () => {
             <article className='md:w-[75%] mx-auto bg-cta-pattern bg-[#0A2640] p-[4rem] text-center md:rounded-md rounded-md'>
                 <h1 className='text-3xl my-5 text-neutral-100 font-thin'>Sign up for our newsletter and be part of our education society</h1>
                 <form onSubmit={handleSubmit}>
-                <div className='flex justify-center items-center'>
-                    <input
-                    type='email'
-                    className='border border-[#69E6A6] px-4 h-[3rem] text-[#0A2640] text-lg rounded-l-full focus:outline-none focus:ring-[#69E6A6] focus:border-[#69E6A6]'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder='Enter your email'
-                    required
-                    />
-                    <button
-                    type='submit'
-                    className='bg-[#69E6A6] border-2 border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] text-lg px-8 py-2 my-3 h-[3rem] font-semibold rounded-r-full'
-                    >
-                    Sign Up
-                    </button>
-                </div>
+                    <div className='flex flex-col md:flex-row justify-center items-center gap-3 md:gap-0'>
+                        <input
+                        type='email'
+                        className='border-2 border-[#69E6A6] px-4 py-2 md:py-1.5 text-[#0A2640] text-lg rounded-r-full rounded-l-full md:rounded-r-none focus:border-[#69E6A6]'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder='Enter your email'
+                        required
+                        />
+                        <button
+                        type='submit'
+                        className='border-2 bg-[#69E6A6] border-[#69E6A6] hover:bg-transparent hover:text-[#69E6A6] transition-all text-[#0A2640] font-semibold  rounded-l-full rounded-r-full md:rounded-l-none p-2 w-[60%] md:w-auto'
+                        >
+                        Sign Up
+                        </button>
+                    </div>
                 </form>
                 {error && <p className='text-red-500'>{error}</p>}
             </article>
